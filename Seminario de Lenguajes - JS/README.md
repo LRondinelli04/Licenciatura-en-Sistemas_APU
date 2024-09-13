@@ -15,7 +15,7 @@ Esta carpeta contiene el desarrollo de las prácticas (con sus ejercicios corres
 - Visualización del tablero y preguntas del oponente durante el turno del otro jugador
 - Detección de conexión perdida y reinicio automático de la partida
 
-## Lenguajes y Tecnologías Utilizadas
+## Lenguajes y Tecnologías
 
 - ### JavaScript
     Lenguaje principal utilizado para el desarrollo del juego y la lógica de la aplicación web.
@@ -29,7 +29,7 @@ Esta carpeta contiene el desarrollo de las prácticas (con sus ejercicios corres
 
 - ### HTML y CSS
     Utilizados para la estructura y el diseño de la interfaz de usuario.
-    
+
 - ### JSON
     Formato utilizado para almacenar y manejar las preguntas y respuestas del juego.
 
