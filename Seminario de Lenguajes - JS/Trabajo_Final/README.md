@@ -10,7 +10,7 @@ Se tiene un tablero con un dado, una casilla de entrada, una casilla de salida y
 
 ## Desarrollo del juego
 
-El juego comienza cuando están los 2 jugadores conectados. Los jugadores eligen su ficha y se ubican en la casilla de entrada (posición inicial). El jugador tira un dado y obtiene un número. Se marca la casilla destino (posición actual + el número del dado) en el tablero y se visualiza la pregunta. El jugador deberá responder la pregunta. Si la responde correctamente, su ficha se mueve en la casilla destino. Si no responde correctamente, su ficha se mantiene en la casilla origen. Si llego a la casilla de salida gana el juego. Sino, le toca el turno al otro jugador y comienza desde el punto 1. **Mientras un jugador juega, el otro jugador puede visualizar el tablero, la pregunta del jugador contrario y no puede tirar el dado.** *Un jugador no puede caer en una casilla ocupada.* El jugador puede abandonar la partida en cualquier momento, dando por ganador al otro jugador. Las preguntas deberán ser aleatorias al momento de iniciar una nueva partida. Si se corta la conexión, se inicia una nueva partida. La ficha de un jugador se identifica por:
+El juego comienza cuando están los 2 jugadores conectados. Los jugadores eligen su ficha y se ubican en la casilla de entrada (posición inicial). El jugador tira un dado y obtiene un número. Se marca la casilla destino (posición actual + el número del dado) en el tablero y se visualiza la pregunta. El jugador deberá responder la pregunta. Si la responde correctamente, su ficha se mueve en la casilla destino. Si no responde correctamente, su ficha se mantiene en la casilla origen. Si llego a la casilla de salida gana el juego. Sino, le toca el turno al otro jugador y comienza desde el punto 1. **Mientras un jugador juega, el otro jugador puede visualizar el tablero, la pregunta del jugador contrario y no puede tirar el dado.** _Un jugador no puede caer en una casilla ocupada._ El jugador puede abandonar la partida en cualquier momento, dando por ganador al otro jugador. Las preguntas deberán ser aleatorias al momento de iniciar una nueva partida. Si se corta la conexión, se inicia una nueva partida. La ficha de un jugador se identifica por:
 
 - **El nombre del jugador**
 - **Color (puede ser elegido una única vez)**
@@ -22,4 +22,26 @@ El juego comienza cuando están los 2 jugadores conectados. Los jugadores eligen
   - Incluir audio en la pregunta (opcional)
   - Incluir una figura en las respuestas (opcional) \* Incluir audio en la respuesta (opcional)
 
-*Toda la lógica del juego deberá resolverse del lado del servidor.*
+_Toda la lógica del juego deberá resolverse del lado del servidor._
+
+## Cómo ejecutar el programa
+
+Para ejecutar el programa, sigue estos pasos:
+
+1. **Clona el repositorio**:
+```sh
+   git clone <URL_DEL_REPOSITORIO>
+   cd <NOMBRE_DEL_REPOSITORIO>
+   ```
+2. **Instala las dependencias**:
+```sh
+   npm install
+   ```
+3. **Inicia el servidor**:
+```sh
+   npm start
+   ```
+4. **Abre tu navegador y navega a**:
+```sh
+   http://localhost:3000
+   ```
