@@ -24,7 +24,7 @@ public class Cuadrado {
 	}
 	
 	public double getArea() {
-		return this.getLado() * this.getLado();
+		return Math.pow(this.lado, 2);
 	}
 	
 }
