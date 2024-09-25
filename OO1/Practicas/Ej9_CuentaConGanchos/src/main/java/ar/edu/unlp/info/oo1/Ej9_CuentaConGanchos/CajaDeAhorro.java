@@ -34,7 +34,7 @@ public class CajaDeAhorro extends Cuenta{
 	public boolean puedeExtraerMonto(double monto) {
 		// double costoAdicional = monto * 2 / 100;
 		// ya estoy contando en el monto el costoAdicional
-		if (monto > super.getSaldo()) {
+		if (monto < super.getSaldo()) {
 			return true;
 		} else {
 			return false;
