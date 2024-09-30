@@ -1,1 +1,3 @@
-Arquetipos de Orientacion a Objetos
+# Segundo Parcial
+
+![Imagen del Segundo Parcial](SegundoParcial.jpeg)
