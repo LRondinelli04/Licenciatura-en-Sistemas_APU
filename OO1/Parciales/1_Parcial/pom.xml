@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>ar.edu.unlp.info.oo1</groupId>
-  <artifactId>PrimerParcial</artifactId>
+  <artifactId>1_Parcial</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
-  <name>PrimerParcial-objetos</name>
+  <name>1_Parcial-objetos</name>
   <description>Este arquetipo es usado para objetos I y II</description>
 
   <licenses>
@@ -45,11 +45,6 @@
       <artifactId>junit-jupiter-engine</artifactId>
       <version>5.7.2</version>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-    	<groupId>ar.edu.unlp.info.oo1</groupId>
-    	<artifactId>Ej10_JobScheduler</artifactId>
-    	<version>0.0.1-SNAPSHOT</version>
     </dependency>
   </dependencies>
   

@@ -1,4 +1,1 @@
-# Primer Parcial
-
-![Imagen del Primer Parcial](PrimerParcial.jpeg)
-
+Arquetipos de Orientacion a Objetos
