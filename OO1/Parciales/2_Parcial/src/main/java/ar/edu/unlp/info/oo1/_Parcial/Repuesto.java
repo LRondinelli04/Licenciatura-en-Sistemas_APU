@@ -1,4 +1,4 @@
-package ar.edu.unlp.info.oo1.SegundoParcial;
+package ar.edu.unlp.info.oo1._Parcial;
 
 import java.time.LocalDate;
 
@@ -8,7 +8,7 @@ public class Repuesto {
 	private LocalDate fechaFabricacion;
 	private double costo;
 	
-	public Repuesto(String nombre, LocalDate fechaFabricacion, double costo) {
+	public Repuesto(String nombre, LocalDate fechaFabricacion,double costo) {
 		this.nombre = nombre;
 		this.fechaFabricacion = fechaFabricacion;
 		this.costo = costo;
@@ -18,8 +18,8 @@ public class Repuesto {
 		return this.costo;
 	}
 	
-	public boolean tieneMasDeCincoAnios() {
-		return LocalDate.now().minusYears(5).isAfter(fechaFabricacion);
+	public LocalDate getFechaFabricacion() {
+		return this.fechaFabricacion;
 	}
 	
 }
