@@ -1,4 +1,4 @@
-package ar.edu.unlp.info.oo1.CuartoParcial;
+package ar.edu.unlp.info.oo1._Parcial;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -7,17 +7,21 @@ import java.util.List;
 public class Cliente {
 
 	private String nombre, email;
-	private LocalDate fechaAlta;
+	private LocalDate fecha;
 	private List<Pedido> pedidos;
 	
 	public Cliente(String nombre, String email) {
 		this.nombre = nombre;
 		this.email = email;
-		this.fechaAlta = LocalDate.now();
+		this.fecha = LocalDate.now();
 		this.pedidos = new ArrayList<Pedido>();
 	}
 	
-	public void agregarPedido (Pedido pedido) {
+	public String getNombre() {
+		return this.nombre;
+	}
+	
+	public void registrarPedido(Pedido pedido) {
 		this.pedidos.add(pedido);
 	}
 	
@@ -25,18 +29,17 @@ public class Cliente {
 		return this.pedidos;
 	}
 	
-	public double costoTotal(LocalDate fechaInicio, LocalDate fechaFin) {
-		double total = 0.0;
+	public double calcularCostoPedido(LocalDate fechaLimite) {
+		double costo = 0;
 		for (Pedido pedido : this.pedidos) {
-			if (pedido.getFechaActual().isAfter(fechaInicio) && pedido.getFechaActual().isBefore(fechaFin)) {
-				total += pedido.costoTotal();
+			if (pedido.getFecha().isAfter(fechaLimite)) {
+				List<Item> items = pedido.getItem();
+				for (Item item : items) {
+					costo += item.calcularCosto();
+				}
 			}
 		}
-		return total;
-	}
-	
-	public String getNombre() {
-		return this.nombre;
+		return costo;
 	}
 	
 }
