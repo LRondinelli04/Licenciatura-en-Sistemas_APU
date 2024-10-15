@@ -1,1 +1,3 @@
-Arquetipos de Orientacion a Objetos
+# Parcial 3
+
+ ![Tercer Parcial](TercerParcial.jpeg)
