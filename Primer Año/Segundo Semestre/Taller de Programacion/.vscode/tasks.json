@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "Live Preview",
+			"workspacePath": "/Users/lucasrondinelli/Desktop/FACULTAD/Primer Año/Segundo Semestre/Taller de Programacion",
+			"problemMatcher": [],
+			"label": "Live Preview: Ejecutar servidor",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}

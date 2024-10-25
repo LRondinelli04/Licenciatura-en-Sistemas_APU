@@ -1,0 +1,121 @@
+programa parcial2
+procesos
+  proceso depositar
+  comenzar
+    mientras (HayFlorEnLaBolsa)
+      depositarFlor
+    mientras (HayPapelEnLaBolsa)
+      depositarPapel
+  fin
+  proceso calcularMax (E t: numero ; ES max: numero ; E id: numero ; ES idMax: numero)
+  comenzar
+    si (t > max)
+      max:= t
+      idMax:= id
+  fin
+  proceso enviarID
+  comenzar
+    EnviarMensaje (1, r1)
+    EnviarMensaje (2, r2)
+    EnviarMensaje (3, r3)
+    EnviarMensaje (4, r4)
+  fin
+  proceso juntarFyP (ES t: numero)
+  comenzar
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+      t:= t + 1
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+      t:= t + 1
+  fin
+  proceso juntarArea (ES t: numero ; E av: numero ; E ca: numero)
+  variables
+    av1, ca1: numero
+  comenzar
+    Random (av1, 45, 62)
+    Random (ca1, 48, 69)
+    BloquearEsquina (av1, ca1)
+    Pos (av1, ca1)
+    juntarFyP (t)
+    Pos (av, ca)
+    LiberarEsquina (av1, ca1)
+  fin
+areas
+  ciudad: AreaC (45,48,62,69)
+  inicio: AreaC (1,1,13,10)
+robots
+  robot tipo1 {recolectores}
+  variables
+    id,  t, av, ca: numero
+    ok: boolean
+  comenzar
+    t:= 0
+    RecibirMensaje (id, jefe)
+    av:= PosAv
+    ca:= PosCa
+    repetir 5
+      juntarArea (t, av, ca)
+    EnviarMensaje (id, jefe)
+    EnviarMensaje (t, jefe)
+    ok:= F
+    RecibirMensaje (ok, jefe)
+    si (ok = V)
+      depositar
+  fin
+  robot tipo2 {jefe}
+  variables
+    id, t, max, idMax: numero
+  comenzar
+    max:= 0
+    enviarID
+    repetir 4
+      RecibirMensaje (id, *)
+      si (id = 1)
+        RecibirMensaje (t, r1)
+        calcularMax (t, max, id, idMax)
+      si (id = 2)
+        RecibirMensaje (t, r2)
+        calcularMax (t, max, id, idMax)
+      si (id = 3)
+        RecibirMensaje (t, r3)
+        calcularMax (t, max, id, idMax)
+      si (id = 4)
+        RecibirMensaje (t, r4)
+        calcularMax (t, max, id, idMax)
+    Informar ('ElRobotQueMasElementosJuntoFue', idMax)
+    Informar ('ConUnTotalDe', max)
+    si (idMax = 1)
+      EnviarMensaje (V, r1)
+    sino
+      si (idMax = 2)
+        EnviarMensaje (V, r2)
+      sino
+        si (idMax = 3)
+          EnviarMensaje (V, r3)
+        sino  
+          EnviarMensaje (V, r4)
+  fin
+variables
+  r1: tipo1
+  r2: tipo1
+  r3: tipo1
+  r4: tipo1
+  jefe: tipo2
+comenzar
+  AsignarArea (r1, ciudad)
+  AsignarArea (r2, ciudad)
+  AsignarArea (r3, ciudad)
+  AsignarArea (r4, ciudad)
+  AsignarArea (jefe, ciudad)
+  AsignarArea (r1, inicio)
+  AsignarArea (r2, inicio)
+  AsignarArea (r3, inicio)
+  AsignarArea (r4, inicio)
+  AsignarArea (jefe, inicio)
+  Iniciar (r1, 10, 10)    
+  Iniciar (r2, 11, 10)
+  Iniciar (r3, 12, 10)
+  Iniciar (r4, 13, 10)
+  Iniciar (jefe, 1, 1)
+fin

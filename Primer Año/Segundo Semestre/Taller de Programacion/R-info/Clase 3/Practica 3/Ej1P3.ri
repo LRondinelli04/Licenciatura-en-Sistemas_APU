@@ -1,0 +1,85 @@
+programa Ej1P3
+
+areas
+  inicioF1: AreaP (6,10,6,10)
+  inicioF2: AreaP (7,10,7,10)
+  inicioP1: AreaP (8,10,8,10)
+  inicioP2: AreaP (9,10,9,10)
+  floreros: AreaPC (1,1,5,10)
+  papeleros: AreaPC (6,1,10,9)
+  final: AreaPC (10,10,10,10)
+robots
+  robot tipo1
+  variables
+    calle: numero
+    avenida: numero
+    Posav: numero
+    Posca: numero
+  comenzar
+    Posav:= PosAv
+    Posca:= PosCa
+    repetir 5
+      Random (calle, 1, 10)
+      Random (avenida, 1, 5)
+      BloquearEsquina (avenida, calle)
+      Pos (avenida, calle)
+      mientras (HayFlorEnLaEsquina)
+        tomarFlor
+      Pos (Posav, Posca)
+      LiberarEsquina (avenida, calle)
+    BloquearEsquina (10,10)
+    Pos (10,10)
+    mientras (HayFlorEnLaBolsa)
+      depositarFlor
+    Pos (Posav, Posca)
+    LiberarEsquina (10,10)
+  fin
+  robot tipo2
+  variables
+    calle: numero
+    avenida: numero
+    Posav: numero
+    Posca: numero
+  comenzar
+    Posav:= PosAv
+    Posca:= PosCa
+    repetir 3
+      Random (calle, 1, 9)
+      Random (avenida, 6,10)
+      BloquearEsquina (avenida, calle)
+      Pos (avenida, calle)
+      mientras (HayPapelEnLaEsquina)
+        tomarPapel
+      Pos (Posav, Posca)
+      LiberarEsquina (avenida, calle)
+    BloquearEsquina (10,10)
+    Pos (10,10)
+    mientras (HayPapelEnLaBolsa)
+      depositarPapel
+    Pos (Posav, Posca)
+    LiberarEsquina (10,10)
+  fin
+variables
+  florero1: tipo1
+  florero2: tipo1
+  papelero1: tipo2
+  papelero2: tipo2
+comenzar
+  AsignarArea (florero1, final)
+  AsignarArea (florero2, final)
+  AsignarArea (papelero1, final)
+  AsignarArea (papelero2, final) 
+  AsignarArea (florero1, inicioF1)
+  AsignarArea (florero2, inicioF2)
+  AsignarArea (papelero1, inicioP1)
+  AsignarArea (papelero2, inicioP2) 
+  AsignarArea (florero1, floreros)
+  AsignarArea (florero2, floreros)
+  AsignarArea (papelero1, papeleros)
+  AsignarArea (papelero2, papeleros)
+  Iniciar(florero1, 6,10)
+  Iniciar(florero2, 7,10)
+  Iniciar(papelero1, 8,10)
+  Iniciar(papelero2, 9,10)
+fin
+  

@@ -1,0 +1,94 @@
+programa Ej3P2
+procesos
+  proceso juntarPapel (ES p: numero)
+  comenzar
+    derecha
+    repetir 9
+      mientras (HayPapelEnLaEsquina)
+        tomarPapel
+        p:= p + 1
+      mover
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+      p:= p + 1
+  fin
+  proceso juntarFlores (ES f: numero)
+  comenzar
+    derecha
+    repetir 9
+      mientras (HayFlorEnLaEsquina)
+        tomarFlor
+        f:= f + 1
+      mover
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+      f:= f + 1
+  fin
+areas
+  ciudadA1: AreaPC (1,1,10,1)
+  ciudadA2: AreaPC (11,1,20,1)
+  ciudadB3: AreaPC (1,5,10,5)
+  ciudadB4: AreaPC (11,5,20,5)
+robots
+  robot tipoA1 
+  variables
+    papel1: numero
+    papel2: numero
+    total: numero
+  comenzar
+    papel1:= 0
+    papel2:= 0
+    total:= 0
+    juntarPapel (papel1)
+    EnviarMensaje (papel1, A2)
+  fin
+  robot tipoA2
+  variables
+    papel1: numero
+    papel2:numero
+    total1: numero
+    total2: numero
+    totalCompleto: numero
+  comenzar
+    papel2:= 0
+    totalCompleto:= 0
+    RecibirMensaje (papel1, A1)
+    juntarPapel (papel2)
+    total1:= papel1 + papel2
+    Informar (total1) 
+  fin
+  robot tipoB1
+  variables
+    flor: numero
+  comenzar
+    juntarFlores (flor)
+    EnviarMensaje (flor, B2)
+  fin
+  robot tipoB2
+  variables
+    flor1: numero
+    flor2: numero
+    total: numero
+  comenzar
+    flor2:= 0
+    total:= 0
+    RecibirMensaje (flor1, B1)
+    juntarFlores (flor2)
+    total:= flor1 + flor2
+    Informar (total)
+  fin
+variables
+  A1: tipoA1
+  A2: tipoA2
+  B1: tipoB1
+  B2: tipoB2
+comenzar
+  AsignarArea (A1, ciudadA1)
+  AsignarArea(A2, ciudadA2)
+  AsignarArea(B1, ciudadB3)
+  AsignarArea(B2, ciudadB4)
+  Iniciar(A1, 1, 1)
+  Iniciar(A2, 11, 1)
+  Iniciar(B1, 1, 5)
+  Iniciar(B2, 11, 5)
+fin

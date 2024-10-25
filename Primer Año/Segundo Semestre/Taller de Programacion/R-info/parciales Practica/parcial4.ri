@@ -1,0 +1,139 @@
+programa parcial2
+procesos
+  proceso enviarID
+  comenzar
+    EnviarMensaje (1, f1) {azul}
+    EnviarMensaje (2, f2) {verde}
+    EnviarMensaje (3, p1) {azul}
+    EnviarMensaje (4, p2) {verde}
+  fin
+  proceso juntarF (ES f: numero)
+  comenzar
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+      f:= f + 1
+  fin
+  proceso recorrerF (ES f: numero)
+  comenzar
+    repetir 4
+      juntarF (f)
+      mover
+    si ((PosAv + 1 = 7) & (PosCa = 12))
+      BloquearEsquina (7, 12)
+      repetir 2
+        juntarF (f)
+        mover
+      LiberarEsquina (7, 12)
+    sino
+      si ((PosAv + 1 = 21) & (PosCa = 12))
+        BloquearEsquina (21, 12)
+        repetir 2
+          juntarF (f)
+          mover
+        LiberarEsquina (21, 12)
+    repetir 4
+      juntarF (f)
+      mover
+    juntarF (f)
+  fin
+  proceso recorrerP (ES p: numero)
+  comenzar
+    repetir 7
+      juntarP (p)
+      mover
+    si ((PosAv = 7) & (PosCa + 1 = 12)) 
+      BloquearEsquina (7, 12)
+      repetir 2
+        juntarP (p)
+        mover
+      LiberarEsquina (7, 12)
+    sino
+      si ((PosAv = 21) & (PosCa + 1 = 12))
+        BloquearEsquina (21, 12)
+        repetir 2
+          juntarP (p)
+          mover
+        LiberarEsquina (21, 12)
+    repetir 11
+      juntarP (p)
+      mover
+    juntarP (p)
+  fin
+  proceso juntarP (ES p: numero)
+  comenzar
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+      p:= p + 1
+  fin
+areas
+  ciudadAzul: AreaPC (2,4,12,24)
+  ciudadVerde: AreaPC (16,4,26,24)
+  ciudadJefe: AreaP (1,1,1,1)
+robots
+  robot florero
+  variables
+    f, id: numero
+  comenzar
+    f:= 0
+    RecibirMensaje (id, jefe)
+    derecha
+    recorrerF (f)
+    EnviarMensaje (id, jefe)
+    EnviarMensaje (f, jefe)
+  fin
+  robot papelero
+  variables
+    p, id: numero
+  comenzar
+    p:= 0
+    RecibirMensaje (id, jefe)
+    recorrerP (p)
+    EnviarMensaje (id, jefe)
+    EnviarMensaje (p, jefe)
+  fin
+  robot fiscalizador
+  variables
+    a1, v1, a2, v2, id: numero
+  comenzar
+    enviarID
+    repetir 4
+      RecibirMensaje (id, *)
+      si (id = 1)
+        RecibirMensaje (a1, f1)
+      sino
+        si (id = 2)
+          RecibirMensaje (v1, f2)
+        sino
+          si (id = 3)
+            RecibirMensaje (a2, p1)
+          sino
+            RecibirMensaje (v2, p2)
+    a1:= a1 + a2
+    v1:= v1 + v2
+    si (a1 > v1)
+      Informar ('ElEquipoAzulEsElGanador', a1)
+    sino  
+      si (v1 > a1)
+        Informar ('ElEquipoVerdeEsElGanador', v1)
+      sino
+        si (a1 = v1)
+          Informar ('LosDosEquiposJuntaronLaMismaCantidadDeObjetos', a1)
+  fin
+variables
+  f1: florero
+  f2: florero
+  p1: papelero
+  p2: papelero
+  jefe: fiscalizador
+comenzar
+  AsignarArea (f1, ciudadAzul)
+  AsignarArea (p1, ciudadAzul)
+  AsignarArea (f2, ciudadVerde)
+  AsignarArea (p2, ciudadVerde)
+  AsignarArea (jefe, ciudadJefe)
+  Iniciar (f1, 2,12)
+  Iniciar (p1, 7,4)
+  Iniciar (f2, 16,12)
+  Iniciar (p2, 21,4)
+  Iniciar (jefe, 1,1)
+fin

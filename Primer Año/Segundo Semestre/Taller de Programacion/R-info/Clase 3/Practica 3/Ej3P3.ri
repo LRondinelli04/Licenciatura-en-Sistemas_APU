@@ -1,0 +1,83 @@
+{FALTA CALCULAR EL ROBOT QUE AGARRO MAS FLORES E INFORMAR }
+programa Ej3P3
+procesos
+  proceso enviarPos (E av: numero ; E ca: numero)
+  comenzar  
+    EnviarMensaje (av, robot1)
+    EnviarMensaje (ca, robot1)
+    EnviarMensaje (av, robot2)
+    EnviarMensaje (ca, robot2)
+    EnviarMensaje (av, robot3)
+    EnviarMensaje (ca, robot3)
+    EnviarMensaje (av, robot4)
+    EnviarMensaje (ca, robot4)
+  fin
+  proceso juntarFlores (E avO: numero ; E caO: numero ; E avR: numero ; E caR: numero ; ES flor: boolean)
+  comenzar
+    flor:= V
+    mientras (flor = V)
+      BloquearEsquina (avR, caR)
+      Pos (avR, caR)
+      si (HayFlorEnLaEsquina)
+        tomarFlor
+        Pos (avO, caO)
+      si ~(HayFlorEnLaEsquina)
+        flor:= F
+        Pos (avO, caO)
+      LiberarEsquina (avR, caR)
+  fin
+areas
+  inicio: AreaC (2,1,5,1)
+  ciudadJefe: AreaP (1,1,1,1)
+  ciudad: AreaC (2,2,10,10)
+robots
+  robot tipo1
+  variables
+    id,total,av,ca,avI,caI: numero
+    tomarF,noparar: boolean
+  comenzar
+    avI:= PosAv
+    caI:= PosCa
+    total:=0
+    tomarF:=V
+    RecibirMensaje(id,jefe)
+    RecibirMensaje(av,jefe)
+    RecibirMensaje(ca,jefe)
+    juntarFlores (avI, caI, av, ca, tomarF)
+  fin
+
+  robot tipo2
+  variables
+    avenida, num, calle, f1, f2, f3, f4, max, ID: numero
+  comenzar
+    EnviarMensaje (1, robot1)
+    EnviarMensaje (2, robot2)
+    EnviarMensaje (3, robot3)
+    EnviarMensaje (4, robot4)
+    Random (avenida, 2, 10)
+    Random (calle, 2, 10)
+    enviarPos (avenida, calle)
+    
+  fin
+variables
+  robot1: tipo1
+  robot2: tipo1
+  robot3: tipo1
+  robot4: tipo1
+  jefe: tipo2
+comenzar
+  AsignarArea (robot1, inicio)
+  AsignarArea (robot1, ciudad)
+  AsignarArea (robot2, inicio)
+  AsignarArea (robot2, ciudad)
+  AsignarArea (robot3, inicio)
+  AsignarArea (robot3, ciudad)
+  AsignarArea (robot4, inicio)
+  AsignarArea (robot4, ciudad)
+  AsignarArea (jefe, ciudadJefe)
+  Iniciar (robot1, 2, 1)
+  Iniciar (robot2, 3, 1)
+  Iniciar (robot3, 4, 1)
+  Iniciar (robot4, 5, 1)
+  Iniciar (jefe, 1, 1)
+fin

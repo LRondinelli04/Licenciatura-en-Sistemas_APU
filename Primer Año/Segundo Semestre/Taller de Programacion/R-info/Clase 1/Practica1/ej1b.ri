@@ -1,0 +1,36 @@
+programa ej1b
+areas
+  ciudad: AreaP (1,1,5, 100)
+robots
+  robot robot1
+  variables
+    flores: numero
+    calle: numero
+  comenzar
+    flores:=0
+    calle:=0
+    repetir 2
+        si ~(HayFlorEnLaEsquina)
+        calle:=calle+1
+        mientras (HayFlorEnLaEsquina)
+        tomarFlor
+        flores:=flores+1
+        repetir 99
+        mover
+        si ~(HayFlorEnLaEsquina)
+         calle:=calle+1
+        mientras (HayFlorEnLaEsquina)
+         tomarFlor
+         flores:= flores+1
+        mientras (HayFlorEnLaBolsa)
+        depositarFlor
+        Pos (PosAv + 2, PosCa)
+    Informar (flores)
+    Informar(calle)
+  fin
+variables
+  Rinfo: robot1
+comenzar
+  AsignarArea (Rinfo,ciudad)
+  Iniciar (Rinfo,1,1)
+fin

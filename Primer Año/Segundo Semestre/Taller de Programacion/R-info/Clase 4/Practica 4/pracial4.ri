@@ -1,0 +1,78 @@
+programa pracial4
+procesos
+  proceso enviarInfo (E n: numero)
+  comenzar
+    si (n = 1)
+      EnviarMensaje (V, r1)
+    si (n = 2)
+      EnviarMensaje (V, r2)
+    si (n = 3)
+      EnviarMensaje (V, r3)
+    si (n = 4)  
+      EnviarMensaje (V, r4) 
+  fin
+  proceso terminar
+  comenzar
+    EnviarMensaje (F, r1)
+    EnviarMensaje (F, r2)
+    EnviarMensaje (F, r3)
+    EnviarMensaje (F, r4)
+  fin
+  proceso hacerTarea (E ok: boolean ; E av: numero ; E ca: numero)
+  comenzar
+    si (ok = V)
+      BloquearEsquina (50,50)
+      Pos (50,50)
+      si (HayFlorEnLaEsquina)
+        tomarFlor
+      Pos (av, ca)
+      LiberarEsquina (50,50)
+  fin
+areas
+  inicio: AreaC (1,1,5,5)
+  ciudad: AreaPC (50,50,50,50)
+robots
+  robot tipo1 {limpiadores}
+  variables
+    av, ca: numero
+    ok: boolean
+  comenzar
+    av:= PosAv
+    ca:= PosCa
+    RecibirMensaje (ok, jefe)
+    mientras (ok = V)
+      hacerTarea (ok, av, ca)
+      RecibirMensaje (ok, jefe)
+  fin
+  robot tipo2 {jefe}
+  variables
+    num: numero
+  comenzar
+    repetir 5
+      Random (num, 1, 4)
+      enviarInfo (num)
+    repetir 4
+      terminar
+  fin
+variables
+  r1: tipo1
+  r2: tipo1
+  r3: tipo1
+  r4: tipo1
+  jefe: tipo2
+comenzar
+  AsignarArea (r1, inicio)
+  AsignarArea (r2, inicio)
+  AsignarArea (r3, inicio)
+  AsignarArea (r4, inicio)
+  AsignarArea (jefe, inicio)
+  AsignarArea (r1, ciudad)
+  AsignarArea (r2, ciudad)
+  AsignarArea (r3, ciudad)
+  AsignarArea (r4, ciudad)
+  Iniciar (r1, 2,2)
+  Iniciar (r2, 3,3)
+  Iniciar (r3, 4,4)
+  Iniciar (r4, 5,5)
+  Iniciar (jefe, 1,1)
+fin

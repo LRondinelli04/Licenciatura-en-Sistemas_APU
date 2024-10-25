@@ -1,0 +1,135 @@
+programa parcial1
+procesos
+  proceso enviarid (ES id: numero)
+  comenzar
+    si (PosAv = 3) & (PosCa = 3)
+      id:= 1
+    si (PosAv = 13) & (PosCa = 13)
+      id:= 2
+    si (PosAv = 16) & (PosCa = 3)
+      id:= 3
+    si (PosAv = 26) & (PosCa = 13)
+      id:= 4
+  fin
+  proceso recorrer (E id: numero ; ES f: numero ; ES p: numero)
+  comenzar
+    si (id = 1)
+      recorrerFlor (f, id)
+      EnviarMensaje (id, fiscalizador)
+    si (id = 2)
+      repetir 2
+        derecha
+      recorrerFlor (f, id)
+      EnviarMensaje (id, fiscalizador)
+    si (id = 3)
+      recorrerPapel (p, id)
+      EnviarMensaje (id, fiscalizador)
+    si (id = 4)
+      repetir 2
+        derecha
+      recorrerPapel (p, id)
+      EnviarMensaje (id, fiscalizador)
+  fin
+  proceso recorrerFlor (ES f: numero ; E id: numero)
+  comenzar
+    repetir 2
+      repetir 10
+        mientras (HayFlorEnLaEsquina)
+          tomarFlor
+          f:= f + 1
+        mover
+      derecha
+      mientras (HayFlorEnLaEsquina)
+        tomarFlor
+        f:= f + 1
+  fin
+  proceso recorrerPapel (ES p: numero ; E id: numero)
+  comenzar
+    repetir 2
+      repetir 10
+        mientras (HayPapelEnLaEsquina)
+          tomarPapel
+          p:= p + 1
+        mover
+      derecha
+      mientras (HayPapelEnLaEsquina)
+        tomarPapel
+        p:= p + 1
+  fin
+  proceso calcularTotal (E f1: numero ; E p1: numero ; ES total: numero)
+  comenzar
+    total:= f1 + p1
+    Informar (total)
+  fin
+areas
+  ciudadFlorero: AreaPC (3,3,13,13)
+  ciudadPapelero: AreaPC (16,3,26,13)
+  fisca: AreaP (14,6,14,6)
+robots
+  robot tipo1 {floreros}
+  variables
+    id, f, p: numero
+  comenzar
+    enviarid (id) {cada robot tiene su id}
+    f:= 0
+    recorrer (id, f, p)
+    EnviarMensaje (f, fiscalizador)
+  fin
+  robot tipo2 {papeleros}
+  variables
+    id, f, p: numero
+  comenzar
+    enviarid (id) {cada robot tiene su id}
+    p:= 0
+    recorrer (id, f, p)
+    EnviarMensaje (p, fiscalizador)
+  fin
+  robot tipo3 {fiscalizador}
+  variables
+    id, floreros, papeleros, f, p, f1, p1, total: numero
+  comenzar
+    total:= 0
+    repetir 4
+      RecibirMensaje (id, *)
+      si (id = 1) | (id = 2)
+        floreros:= floreros + 1
+        si (id = 1)
+          RecibirMensaje (f, florero1)
+          f1:= f
+          f:= 0
+        si (id = 2)
+          RecibirMensaje (f, florero2)
+          f1:= f1 + f
+        si (floreros = 2)
+          Informar ('floreros', floreros) 
+      si (id = 3) | (id = 4)
+        papeleros:= papeleros + 1
+        si (id = 3)
+          RecibirMensaje (p, papelero1)
+          p1:= p
+          p:= 0
+        si (id = 4)
+          RecibirMensaje (p, papelero2)
+          p1:= p1 + p
+        si (papeleros = 2)
+          Informar ('papeleros', papeleros)
+    calcularTotal (f1, p1, total)
+  fin
+variables
+  florero1: tipo1
+  florero2: tipo1
+  papelero1: tipo2
+  papelero2: tipo2
+  fiscalizador: tipo3
+comenzar
+  AsignarArea (florero1, ciudadFlorero)
+  AsignarArea (florero2, ciudadFlorero)
+  AsignarArea (papelero1, ciudadPapelero)
+  AsignarArea (papelero2, ciudadPapelero)
+  AsignarArea (fiscalizador, fisca)
+  Iniciar (florero1, 3,3)
+  Iniciar (florero2, 13,13)
+  Iniciar (papelero1, 16,3)
+  Iniciar (papelero2, 26, 13)
+  Iniciar (fiscalizador, 14,6)
+fin

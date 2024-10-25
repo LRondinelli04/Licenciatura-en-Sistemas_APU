@@ -1,0 +1,108 @@
+{TIENEN QUE RECORRER TODA LA AVENIDA Y VOLVER A SU INICIO / A CORREGIR}
+programa Ej1P4
+procesos  
+  proceso calcularId (ES id: numero)
+  comenzar
+    si (PosAv = 1) & (PosCa = 1)
+      id:= 1
+    si (PosAv = 2) & (PosCa = 1)
+      id:= 2
+    si (PosAv = 3) & (PosCa = 1)
+      id:= 3
+  fin
+  proceso depositar (E flor: numero ; E av: numero ; E ca: numero ; E avI: numero ; E caI: numero ; ES listo: boolean)
+  comenzar
+    BloquearEsquina (av, ca)
+    Pos (av, ca)
+    repetir flor
+      depositarFlor
+    Pos (avI, caI)
+    LiberarEsquina (av, ca)
+    listo:= V
+  fin
+  proceso recolectar (ES f: numero)
+  comenzar
+    f:= 0
+    mover
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+      f:= f + 1
+  fin
+  proceso depositarCliente (ES f: numero)
+  comenzar
+    mientras (HayFlorEnLaBolsa)
+      si ~(HayFlorEnLaEsquina)
+        depositarFlor
+        f:= f - 1
+      mover
+  fin
+areas
+  ciudadCliente: AreaC (1,1,3,6)
+  ciudadServidor: AreaP (100,100,100,100)
+robots
+  robot tipo1 {cliente}
+  variables
+    flor: numero
+    id: numero
+    f: numero
+    Posav, Posca: numero
+    listo: boolean
+  comenzar
+    calcularId (id)
+    Random (flor, 1, 4)
+    EnviarMensaje (id, servidor)
+    EnviarMensaje (flor, servidor)
+    Posav:= PosAv
+    Posca:= PosCa
+    RecibirMensaje (listo, servidor)
+    si (listo = V)
+      recolectar (f)
+    depositarCliente (f)
+  fin
+  robot tipo2 {servidor}
+  variables
+    id, f, Posav, Posca, avI, caI: numero
+    listo: boolean
+  comenzar
+    avI:= PosAv
+    caI:= PosCa
+    mientras (HayFlorEnLaEsquina) {para que tenga flores en la bolsa}
+      tomarFlor
+    listo:= F
+    repetir 3
+      RecibirMensaje (id, *)
+      si (id = 1)
+        RecibirMensaje (f,  cliente1)
+        Posav:= 1
+        Posca:= 2
+        depositar (f, Posav, Posca, avI, caI, listo) 
+      si (id = 2)
+        RecibirMensaje (f,  cliente2)
+        Posav:= 2
+        Posca:= 2
+        depositar (f, Posav, Posca, avI, caI, listo)
+      si (id = 3)
+        RecibirMensaje (f,  cliente3)
+        Posav:= 3
+        Posca:= 2
+        depositar (f, Posav, Posca, avI, caI, listo)
+    EnviarMensaje (listo, cliente1)
+    EnviarMensaje (listo, cliente2)
+    EnviarMensaje (listo, cliente3)
+  fin
+variables
+  cliente1: tipo1
+  cliente2: tipo1
+  cliente3: tipo1
+  servidor: tipo2
+comenzar
+  AsignarArea (cliente1, ciudadCliente)
+  AsignarArea (cliente2, ciudadCliente)
+  AsignarArea (cliente3, ciudadCliente)
+  AsignarArea (servidor, ciudadServidor)
+  AsignarArea (servidor, ciudadCliente)
+  Iniciar (cliente1, 1, 1)
+  Iniciar (cliente2, 2, 1)
+  Iniciar (cliente3, 3, 1)
+  Iniciar (servidor, 100, 100)
+fin

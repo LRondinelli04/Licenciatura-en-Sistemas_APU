@@ -1,0 +1,103 @@
+{NO INFORMA CUAL HIZO MAS PASOS PERO NO SE COMO CORREGIR ESO}
+programa parcial5
+procesos
+  proceso enviarID
+  comenzar
+    EnviarMensaje (1, r1)
+    EnviarMensaje (2, r2)
+    EnviarMensaje (3, r3)
+  fin
+  proceso recorrer (ES cant: numero)
+  variables
+    pasos: numero
+  comenzar
+    repetir 4
+      Random (pasos, 1,10)
+      cant:= cant + pasos
+      repetir pasos
+        mientras (HayPapelEnLaEsquina)
+          tomarPapel
+        mover
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+  fin
+  proceso enviarAvenida
+  variables
+    avR: numero
+  comenzar
+    Random (avR, 1, 7)
+    EnviarMensaje (avR, r1)
+    Random (avR, 8, 14)
+    EnviarMensaje (avR, r2)
+    Random (avR, 15, 21)
+    EnviarMensaje (avR, r3)
+  fin
+  proceso depositar (E av: numero ; E ca: numero)
+  comenzar
+    BloquearEsquina (1, 30)
+    Pos (1, 30)
+    mientras (HayPapelEnLaBolsa)
+      depositarPapel
+    Pos (av, ca)
+    LiberarEsquina (1,30)
+  fin
+  proceso calcularMax (E cant1: numero ; E cant2: numero ; E cant3: numero ; ES max: numero)
+  comenzar
+    si (cant1 > cant2 > cant3) | (cant1 > cant3 > cant2)
+      max:= 1
+    si (cant2 > cant1 > cant3) | (cant2 > cant3 > cant1)
+      max:= 2
+    si (cant3 > cant1 > cant2) | (cant3 > cant2 > cant1)
+      max:= 3
+  fin
+areas
+  ciudad: AreaC (1,1,21,40)
+  ciudadJefe: AreaP (25,1,25,1)
+robots
+  robot tipo1
+  variables
+    avR, cant, id, av, ca: numero
+  comenzar
+    RecibirMensaje (id, fisca)
+    RecibirMensaje (avR, fisca)
+    cant:= 0
+    Pos (avR, 1)
+    av:= PosAv
+    ca:= PosCa
+    recorrer (cant)
+    depositar (av, ca)
+    EnviarMensaje (id, fisca)
+    EnviarMensaje (cant, fisca)
+  fin
+  robot fiscal
+  variables
+    avR, cant1, cant2, cant3, id, max: numero
+  comenzar
+    enviarID
+    enviarAvenida 
+    repetir 3
+      RecibirMensaje (id, *)
+      si (id = 1)
+        RecibirMensaje (cant1, r1)
+      si (id = 2)
+        RecibirMensaje (cant2, r2)
+      si (id = 3)
+        RecibirMensaje (cant3, r3)
+    calcularMax (cant1, cant2, cant3, max)
+    Informar (max)
+  fin
+variables
+  r1: tipo1
+  r2: tipo1
+  r3: tipo1
+  fisca: fiscal
+comenzar
+  AsignarArea (r1, ciudad)
+  AsignarArea (r2, ciudad)
+  AsignarArea (r3, ciudad)
+  AsignarArea (fisca, ciudadJefe)
+  Iniciar (r1, 1,1)
+  Iniciar (r2, 8,1)
+  Iniciar (r3, 15,1)
+  Iniciar (fisca, 25,1)
+fin

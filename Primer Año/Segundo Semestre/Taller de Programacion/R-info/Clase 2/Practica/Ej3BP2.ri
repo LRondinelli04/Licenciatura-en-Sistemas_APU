@@ -1,0 +1,135 @@
+programa Ej3BP2
+procesos
+  proceso juntarPapel (ES p: numero)
+  comenzar
+    derecha
+    repetir 9
+      mientras (HayPapelEnLaEsquina)
+        tomarPapel
+        p:= p + 1
+      mover
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+      p:= p + 1
+  fin
+  proceso juntarFlores (ES f: numero)
+  comenzar
+    derecha
+    repetir 9
+      mientras (HayFlorEnLaEsquina)
+        tomarFlor
+        f:= f + 1
+      mover
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+      f:= f + 1
+  fin
+areas
+  ciudadA1: AreaPC (1,1,10,1)
+  ciudadA12: AreaPC (21,1,30,1)
+  ciudadA2: AreaPC (11,1,20,1)
+  ciudadA22: AreaPC (31,1,40,1)
+  ciudadB3: AreaPC (1,5,10,5)
+  ciudadB32: AreaPC (21,5,30,5)
+  ciudadB4: AreaPC (11,5,20,5)
+  ciudadB42: AreaPC (31,5,40,5)
+robots
+  robot tipoA1 
+  variables
+    papel1: numero
+    papel2: numero
+    total: numero
+  comenzar
+    papel1:= 0
+    papel2:= 0
+    total:= 0
+    juntarPapel (papel1)
+    EnviarMensaje (papel1, A2)
+    Pos (PosAv + 11, 1)
+    repetir 3
+      derecha
+    RecibirMensaje (total, A2)
+    juntarPapel (papel2)
+    total:= total + papel2
+    EnviarMensaje (total, A2)
+  fin
+  robot tipoA2
+  variables
+    papel1: numero
+    papel2:numero
+    total1: numero
+    total2: numero
+    totalCompleto: numero
+  comenzar
+    papel2:= 0
+    totalCompleto:= 0
+    RecibirMensaje (papel1, A1)
+    juntarPapel (papel2)
+    total1:= papel1 + papel2
+    EnviarMensaje (total1, A1)
+    RecibirMensaje (total2, A1)
+    Pos (PosAv + 11, 1)
+    repetir 3 
+      derecha
+    juntarPapel (totalCompleto)
+    totalCompleto:= total2 + totalCompleto
+    Informar (totalCompleto) 
+  fin
+  robot tipoB1
+  variables
+    flor: numero
+    flor2: numero
+    total: numero
+  comenzar
+    juntarFlores (flor)
+    EnviarMensaje (flor, B2)
+    Pos (PosAv + 11, 5)
+    repetir 3
+      derecha
+    RecibirMensaje (total, B2)
+    juntarFlores (flor2)
+    flor2:= flor2 + total
+    EnviarMensaje (flor2, B2)
+  fin
+  robot tipoB2
+  variables
+    flor1: numero
+    flor2: numero
+    flor3: numero
+    total: numero
+    total2: numero
+    totalCompleto: numero
+  comenzar
+    flor2:= 0
+    total:= 0
+    RecibirMensaje (flor1, B1)
+    juntarFlores (flor2)
+    total:= flor1 + flor2
+    EnviarMensaje (total, B1)
+    RecibirMensaje (total2, B1)
+    Pos (PosAv + 11, 5)
+    repetir 3 
+      derecha
+    juntarFlores (flor3)
+    totalCompleto:= flor2 + total2
+    Informar (totalCompleto)
+  fin
+variables
+  A1: tipoA1
+  A2: tipoA2
+  B1: tipoB1
+  B2: tipoB2
+comenzar
+  AsignarArea (A1, ciudadA1)
+  AsignarArea (A1, ciudadA12)
+  AsignarArea (A2, ciudadA2)
+  AsignarArea (A2, ciudadA22)
+  AsignarArea (B1, ciudadB3)
+  AsignarArea (B1, ciudadB32)
+  AsignarArea (B2, ciudadB4)
+  AsignarArea (B2, ciudadB42)
+  Iniciar (A1, 1, 1)
+  Iniciar (A2, 11, 1)
+  Iniciar (B1, 1, 5)
+  Iniciar (B2, 11, 5)
+fin

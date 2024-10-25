@@ -1,0 +1,92 @@
+programa Ej4BP3
+procesos
+  proceso juntarFLores  (E flor: boolean ; E Posav: numero ; E Posca: numero ; E ID: numero)
+  comenzar
+    mientras (flor)
+      BloquearEsquina (10, 10)
+      Pos (10, 10)
+      si (HayFlorEnLaEsquina)
+        tomarFlor
+        Pos (Posav, Posca)
+        Pos (11, 11)
+        depositarFlor
+        Pos (Posav, Posca)
+      sino
+        EnviarMensaje (ID, cordinador)
+        Pos (Posav, Posca)
+        flor:= F
+      LiberarEsquina (10, 10)
+  fin
+  proceso recolectar (E av: numero ; E ca: numero)
+  comenzar
+    BloquearEsquina (11,11)
+    Pos (11,11)
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+    Pos (av, ca)
+    LiberarEsquina (11,11)
+  fin
+areas
+  inicioR: AreaPC (9,9,9,12)
+  inicioC: AreaP (1,1,1,1)
+  ciudad: AreaC (10,10,11,11)
+robots
+  robot tipo1
+  variables
+    ID: numero
+    f: boolean
+    Posav: numero
+    Posca: numero
+  comenzar
+    f:= V
+    Posav:= PosAv
+    Posca:= PosCa
+    RecibirMensaje (ID, cordinador)
+    juntarFLores (f, Posav, Posca, ID)
+  fin
+  robot tipo2
+  variables
+    ID: numero
+    Posav: numero
+    Posca: numero
+  comenzar
+    EnviarMensaje (1, robot1)
+    EnviarMensaje (2, robot2)
+    EnviarMensaje (3, robot3)
+    EnviarMensaje (4, robot4)
+    RecibirMensaje (ID, *)
+    si (ID = 1)
+      Informar ('Robot1', 1)
+    si (ID = 2)
+      Informar ('Robot2', 2)
+    si (ID = 3)
+      Informar ('Robot3', 3)
+    si (ID = 4)
+      Informar ('Robot4', 4)  
+    Posav:= PosAv
+    Posca:= PosCa
+    recolectar (Posav, Posca)
+  fin
+variables
+  robot1: tipo1
+  robot2: tipo1
+  robot3: tipo1
+  robot4: tipo1
+  cordinador: tipo2
+comenzar
+  AsignarArea (robot1, inicioR)
+  AsignarArea (robot1, ciudad)
+  AsignarArea (robot2, inicioR)
+  AsignarArea (robot2, ciudad)
+  AsignarArea (robot3, inicioR)
+  AsignarArea (robot3, ciudad)
+  AsignarArea (robot4, inicioR)
+  AsignarArea (robot4, ciudad)
+  AsignarArea (cordinador, inicioC)
+  AsignarArea (cordinador, ciudad)
+  Iniciar (robot1, 9, 9)
+  Iniciar (robot2, 9, 10)
+  Iniciar (robot3, 9, 11) 
+  Iniciar (robot4, 9, 12)
+  Iniciar (cordinador, 1, 1)
+fin 
