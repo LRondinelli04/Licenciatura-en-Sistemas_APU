@@ -19,5 +19,5 @@ Este repositorio contiene todos los archivos de prácticas y resolución de parc
 
 ## Estructura del Repositorio
 
-- **P
+- **Primer_Año/**: Contiene los archivos de prácticas y proyectos realizados en el primer año de la carrera.
 - **Segundo_Año/**: Contiene todos los contenidos y actividades realizadas durante el segundo año de la carrera.
