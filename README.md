@@ -15,7 +15,12 @@ Este repositorio contiene todos los archivos de prácticas y resolución de parc
   Lenguaje de programación utilizado para añadir interactividad a las páginas web y desarrollar aplicaciones web dinámicas.
 
 - ### Java
+
   Lenguaje de programación orientado a objetos utilizado para desarrollar aplicaciones robustas y escalables.
+
+- ### Pascal
+
+  Lenguaje de programación utilizado para la resolución de problemas y ejercicios en las materias CADP y Taller de Programación (Primer año).
 
 ## Estructura del Repositorio
 
