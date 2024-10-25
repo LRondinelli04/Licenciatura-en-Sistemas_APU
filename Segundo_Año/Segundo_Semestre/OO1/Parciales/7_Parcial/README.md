@@ -1,1 +1,3 @@
-Arquetipos de Orientacion a Objetos
+# Septimo Parcial
+
+![Imagen del Quinto Parcial](SeptimoParcial.jpeg)
