@@ -1,0 +1,154 @@
+programa Ej2P3
+procesos
+  proceso escalonDerechaFlor (ES cant: numero)
+  comenzar
+    repetir cant   
+      mientras (HayFlorEnLaEsquina)
+        tomarFlor
+      mover
+    derecha
+    repetir cant {escalon 5}
+      mientras (HayFlorEnLaEsquina)
+        tomarFlor
+      mover
+    repetir 3
+      derecha {apunta para arriba}
+    cant:= cant - 1
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+  fin
+  proceso escalonIzquierdaFlor (ES cant: numero)
+  comenzar
+    repetir 3
+      derecha
+    repetir 4
+      repetir cant
+        mientras (HayFlorEnLaEsquina)
+          tomarFlor
+        mover
+      derecha
+      repetir cant
+        mientras (HayFlorEnLaEsquina)
+          tomarFlor
+        mover
+      repetir 3 
+        derecha
+      cant:= cant + 1
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+  fin
+  proceso juntarFlores (ES cant: numero)
+  variables
+    flor: numero
+  comenzar
+    repetir 4
+      escalonDerechaFlor (cant)
+    BloquearEsquina (16,16)
+    escalonDerechaFlor (cant)
+    Pos (PosAv - 1, PosCa)
+    LiberarEsquina (16,16)
+    cant:= 2
+    escalonIzquierdaFlor (cant)
+  fin
+  proceso escalonIzquierdaPapel (ES cant: numero)
+  comenzar
+    repetir cant {escalon 5} 
+      mientras (HayPapelEnLaEsquina)
+        tomarPapel
+      mover
+    repetir 3
+      derecha
+    repetir cant {escalon 5}
+      mientras (HayPapelEnLaEsquina)
+        tomarPapel
+      mover
+    derecha {apunta para arriba}
+    cant:= cant - 1
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+  fin
+  proceso escalonDerechaPapel (ES cant: numero)
+  comenzar 
+    derecha
+    repetir cant   
+      mientras (HayPapelEnLaEsquina)
+        tomarPapel
+      mover
+    repetir 3
+      derecha
+    repetir cant
+      mientras (HayFlorEnLaEsquina)
+        tomarFlor
+      mover
+    cant:= cant + 1
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+  fin
+  proceso juntarPapel (ES cant: numero)
+  variables
+    papel: numero
+  comenzar
+    repetir 4
+      escalonIzquierdaPapel (cant)
+    BloquearEsquina (16,16)
+    escalonIzquierdaPapel (cant)
+    Pos (PosAv + 1, PosCa)
+    LiberarEsquina (16,16)
+    cant:= 2
+    repetir 4
+      escalonDerechaPapel (cant)
+  fin
+areas
+  ciudad: AreaC (1,1,31,30)
+robots
+  robot tipo1
+  variables
+    f: numero
+    cant: numero
+    ID: numero
+  comenzar
+    f:= 0
+    cant:= 5
+    RecibirMensaje (ID, jefe)
+    juntarFlores (cant)
+    EnviarMensaje (ID, jefe)
+  fin
+  robot tipo2
+  variables
+    p: numero
+    cant: numero
+    ID: numero
+  comenzar
+    p:= 0
+    cant:= 5
+    RecibirMensaje (ID, jefe)
+    juntarPapel (cant)
+    EnviarMensaje (ID, jefe)
+  fin
+  robot tipo3
+  variables
+    cant: numero
+    flor: numero
+    papel: numero
+    ID: numero
+  comenzar
+    EnviarMensaje (1, robot1)
+    EnviarMensaje (2, robot2)
+    RecibirMensaje (ID, *)
+    si (ID = 1)
+      Informar ('Robot1', 1)
+    si (ID = 2)
+      Informar ('Robot2', 2)
+  fin
+variables
+  robot1: tipo1
+  robot2: tipo2
+  jefe: tipo3
+comenzar
+  AsignarArea (robot1, ciudad)
+  AsignarArea (robot2, ciudad)
+  AsignarArea(jefe, ciudad)
+  Iniciar (robot1, 1, 1)
+  Iniciar (robot2, 31, 1)
+  Iniciar (jefe, 15, 1)
+fin 

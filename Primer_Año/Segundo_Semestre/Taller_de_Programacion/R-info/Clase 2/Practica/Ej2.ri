@@ -1,0 +1,75 @@
+programa ej2
+procesos
+  proceso escalera (ES flor: numero; ES papel: numero)
+  variables   
+    alto: numero
+  comenzar
+    Random(alto, 1, 5)
+    repetir alto
+      juntarFlor (flor)
+      juntarPapel (papel)
+      mover
+    juntarFlor (flor)
+    juntarPapel (papel)
+    derecha
+    mover
+    repetir 3
+      derecha
+  fin
+  proceso juntarFlor (ES flor: numero)
+  comenzar
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+      flor:= flor + 1
+  fin
+  proceso juntarPapel (ES papel: numero)
+  comenzar 
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+      papel:= papel + 1
+  fin
+areas
+  ciudadJefe: AreaP (1,1,1,1)
+  ciudad: AreaC (2,1,50,50)
+robots
+  robot escalera
+  variables   
+    flor: numero
+    papel: numero
+  comenzar
+    repetir 4
+      flor:= 0
+      papel:= 0
+      escalera (flor, papel)
+      si (flor > papel)
+        EnviarMensaje (1, jefe)
+      si (papel >= flor)
+        EnviarMensaje (0, jefe)
+  fin
+  robot jefe
+  variables
+    cant: numero
+    suma: numero
+  comenzar
+    suma:= 0 
+    cant:= 0
+    repetir 12
+      RecibirMensaje (cant, *)
+      suma:= suma + cant
+    Informar ('LaCantidadDeEscalonesConMasFloresQuePapelesSon', suma)
+  fin
+variables
+  r1: escalera
+  r2: escalera
+  r3: escalera
+  jefe: jefe
+comenzar
+  AsignarArea(r1, ciudad)
+  AsignarArea(r2, ciudad)
+  AsignarArea(r3, ciudad)
+  AsignarArea(jefe, ciudadJefe)
+  Iniciar(jefe, 1, 1)
+  Iniciar(r1, 2, 1)
+  Iniciar(r2, 7, 1)
+  Iniciar(r3, 12, 1)
+fin

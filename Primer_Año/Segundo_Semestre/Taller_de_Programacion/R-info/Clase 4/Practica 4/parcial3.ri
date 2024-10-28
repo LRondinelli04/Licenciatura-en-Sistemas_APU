@@ -1,0 +1,92 @@
+{NO LO TERMINE Y ESTA MAL}
+programa nombrePrograma
+procesos
+  proceso tomarEsquinaPapel (E av: numero ; E ca: numero)
+  comenzar
+    BloquearEsquina (15,15)
+    Pos (15,15)
+    si (HayPapelEnLaEsquina)
+      tomarPapel
+    Pos (av,ca)
+    LiberarEsquina (15,15)
+  fin
+  proceso tomarPapeles (E id: numero ; E av: numero ; E ca: numero)
+  variables
+    avNuevo, caNuevo: numero
+  comenzar
+    avNuevo:= 5
+    caNuevo:= 4
+    repetir 12
+      si (id = 1)
+        tomarEsquinaPapel (av,ca)
+        avNuevo:= 5
+        caNuevo:= 4
+        dejarPapel (av, ca, avNuevo, caNuevo)
+  fin
+  proceso dejarPapel (E av: numero ; E ca: numero ; ES avNuevo: numero ; ES caNuevo: numero)
+  comenzar
+    BloquearEsquina (avNuevo, caNuevo)
+    Pos (avNuevo, caNuevo)
+    si ~(HayPapelEnLaEsquina)
+      depositarPapel
+    mover
+    avNuevo:= PosAv
+    caNuevo:= PosCa
+    Pos (av, ca)
+    LiberarEsquina (avNuevo, caNuevo)
+  fin
+areas
+  inicio: AreaC (50,50,53,53)
+  ciudadTomar: AreaC (15,15,15,15)
+  ciudad1: AreaC (5,4,9,16)
+  ciudad2: AreaC (11,4,15,16)
+  ciudadFisca: AreaP (1,1,1,1)
+robots
+  robot tipo1 {vertical}
+  variables
+    id, Posav, Posca: numero
+  comenzar
+    RecibirMensaje (id, fisca)
+    Posav:= PosAv
+    Posca:= PosCa
+    tomarPapeles (id, Posav, Posca)
+  fin
+  robot tipo2 {horizontal}
+  variables
+    id: numero
+  comenzar
+    RecibirMensaje (id, fisca)
+  fin
+  robot tipo3 {fiscalizador}
+  comenzar
+    EnviarMensaje (1, v1)
+    EnviarMensaje (2, h1)
+    EnviarMensaje (3, v2)
+    EnviarMensaje (4, h2)
+  fin
+variables
+  v1: tipo1
+  v2: tipo1
+  h1: tipo2
+  h2: tipo2
+  fisca: tipo3
+comenzar
+  AsignarArea (v1, ciudad1)
+  AsignarArea (v2, ciudad2)
+  AsignarArea (h1, ciudad1)
+  AsignarArea (h2, ciudad2)
+  AsignarArea (v1, inicio)
+  AsignarArea (v2, inicio)
+  AsignarArea (h1, inicio)
+  AsignarArea (h2, inicio)
+  AsignarArea (v1, ciudadTomar)
+  AsignarArea (v2, ciudadTomar)
+  AsignarArea (h1, ciudadTomar)
+  AsignarArea (h2, ciudadTomar)
+  AsignarArea (fisca, ciudadFisca)
+  Iniciar (v1,50,50)
+  Iniciar (v2,51,51)
+  Iniciar (h1,52,52)
+  Iniciar (h2,53,53)
+  Iniciar (fisca,1,1)
+fin

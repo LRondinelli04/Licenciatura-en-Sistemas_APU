@@ -1,0 +1,88 @@
+programa Ej2P4
+procesos
+  proceso recorrerAv (ES av: numero ; ES ca: numero)
+  variables
+    papel: numero
+  comenzar
+    papel:= 0
+    mientras (PosCa < 100)
+      TomarPapel (papel, av, ca)
+      mover
+    TomarPapel (papel, av, ca)
+  fin
+  proceso TomarPapel (ES papel: numero ; ES av: numero ; ES ca: numero)
+  comenzar
+    mientras (papel < 5) & (HayPapelEnLaEsquina)
+      tomarPapel
+      papel:= papel + 1
+      si (papel = 5)
+        av:= PosAv
+        ca:= PosCa
+        BloquearEsquina (50, 50)
+        Pos (50,50)
+        mientras (HayPapelEnLaBolsa)
+          depositarPapel
+          Pos (av, ca)
+          papel:= 0
+        LiberarEsquina (50, 50)
+  fin
+  proceso robar (E tomar: numero ; E av: numero ; E ca: numero ; E no: numero)
+  comenzar
+    mientras (no < 8)
+      BloquearEsquina (50, 50)
+      Pos (50, 50)
+      mientras (HayPapelEnLaEsquina)
+        repetir tomar
+          si (HayPapelEnLaEsquina)
+            tomarPapel
+      si ~(HayPapelEnLaEsquina)
+        Pos (av,ca)
+      si (HayPapelEnLaBolsa)
+        mientras (HayPapelEnLaBolsa)
+          depositarPapel
+        no:= 0
+      si ~(HayPapelEnLaBolsa)
+        no:= no  + 1
+      LiberarEsquina (50, 50)
+  fin
+areas
+  ciudadProductor1: AreaP (5,1,5,100)
+  ciudadProductor2: AreaP (10,1,10,100)
+  medio: AreaC (50,50,50,50)
+  ciudadConsumidor: AreaPC (11,1,12,1)
+robots 
+  robot tipo1 {productor}
+  variables
+    Posav, Posca: numero
+  comenzar
+    recorrerAv (Posav, Posca)
+  fin
+  robot tipo2 {consumidor}
+  variables
+    tomar, av, ca, no: numero
+  comenzar
+    av:= PosAv
+    ca:= PosCa
+    no:= 0
+    Random (tomar, 2, 5)
+    robar (tomar, av, ca, no)
+  fin
+variables
+  productor1: tipo1
+  productor2: tipo1
+  consumidor1: tipo2
+  consumidor2: tipo2
+comenzar
+  AsignarArea (productor1, ciudadProductor1)
+  AsignarArea (productor1, medio)
+  AsignarArea (productor2, ciudadProductor2)
+  AsignarArea (productor2, medio)
+  AsignarArea (consumidor1, ciudadConsumidor)
+  AsignarArea (consumidor2, ciudadConsumidor)
+  AsignarArea (consumidor1, medio)
+  AsignarArea (consumidor2, medio)
+  Iniciar (productor1, 5, 1)
+  Iniciar (productor2,  10, 1)
+  Iniciar (consumidor1, 11, 1)
+  Iniciar (consumidor2, 12, 1)
+fin

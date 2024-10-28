@@ -1,0 +1,131 @@
+programa parcial7
+procesos
+  proceso enviarID
+  comenzar
+    EnviarMensaje (1, f1)
+    EnviarMensaje (2, f2)
+    EnviarMensaje (3, p1)
+    EnviarMensaje (4, p2)
+  fin
+  proceso juntarF (ES f: numero)
+  comenzar
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+      f:= f + 1
+  fin
+  proceso recorrerFlorero (ES f: numero)
+  comenzar
+    repetir 2
+      repetir 10
+        juntarF (f)
+        mover
+      derecha
+      juntarF (f)
+  fin
+  proceso juntarP (ES p: numero)
+  comenzar
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel 
+      p:= p + 1
+  fin
+  proceso recorrerPapelero (ES p: numero)
+  comenzar
+    repetir 2
+      derecha
+    repetir 2
+      repetir 10
+        juntarP (p)
+        mover
+      derecha
+      juntarP (p)  
+  fin
+  proceso suma2 (E id: numero ; ES total: numero)
+  variables
+    f, p: numero
+  comenzar
+    f:= 0
+    p:= 0
+    si (id = 2)
+      RecibirMensaje (f, f2)
+    si (id = 4)
+      RecibirMensaje (p, p2)
+    total:= f + p
+  fin
+  proceso suma1 (E id: numero ; ES total: numero)
+  variables
+    f, p: numero
+  comenzar
+    f:= 0
+    p:= 0
+    si (id = 1)
+      RecibirMensaje (f, f1)
+    si (id = 3)
+      RecibirMensaje (p, p1)
+    total:= f + p
+  fin
+areas
+  cuadrado1: AreaC (3,3,13,13)
+  cuadrado2: AreaC (16,3,26,13)
+  ciudadJefe: AreaP (14,6,14,6)
+robots 
+  robot tipo1 {floreros}
+  variables
+    id, f: numero
+  comenzar
+    RecibirMensaje (id, jefe)
+    recorrerFlorero (f)
+    EnviarMensaje (id, jefe)
+  fin
+  robot tipo2 {papeleros}
+  variables
+    id, p: numero
+  comenzar
+    RecibirMensaje (id, jefe)
+    recorrerPapelero (p)
+    EnviarMensaje (id, jefe)
+  fin
+  robot tipo3 {fisca}
+  variables
+    id, e1, e2, total1, total2, max, f, p: numero
+    ok1, ok2: boolean
+  comenzar
+    enviarID 
+    ok1:= V
+    ok2:= V
+    repetir 4 
+      RecibirMensaje (id, *)
+      si (id = 1) | (id = 3)
+        e1:= e1 + 1
+        si (e1 = 2)
+          si (ok1 = V)
+            Informar ('cuadrado1Gano', 1)
+            ok2:= F
+        suma1 (id, total1)
+      si (id = 2) | (id = 4)
+        e2:= e2 + 1
+        si (e2 = 2)
+          si (ok2 = V)
+            Informar ('cuadrado2Gano', 2)
+            ok1:= F
+        suma2 (id, total2)
+    Informar ('objetosTomados', max)
+  fin
+variables
+  f1: tipo1
+  f2: tipo1
+  p1: tipo2
+  p2: tipo2
+  jefe: tipo3
+comenzar
+  AsignarArea (f1, cuadrado1)
+  AsignarArea (f2, cuadrado2)
+  AsignarArea (p1, cuadrado1)
+  AsignarArea (p2, cuadrado2)
+  AsignarArea (jefe, ciudadJefe)
+  Iniciar (f1, 3,3)
+  Iniciar (f2, 16, 3)
+  Iniciar (p1, 13,13)
+  Iniciar (p2, 26,13)
+  Iniciar (jefe, 14,6)
+  
+fin

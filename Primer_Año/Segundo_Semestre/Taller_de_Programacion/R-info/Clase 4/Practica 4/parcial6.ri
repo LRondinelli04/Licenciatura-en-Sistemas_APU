@@ -1,0 +1,94 @@
+programa parcial6
+procesos
+  proceso juntarFyP (E av: numero ; E ca: numero ; ES total: numero)
+  variables
+    avR, caR, p, f: numero
+  comenzar
+    Random (avR, 45,62)
+    Random (caR, 48,69)
+    BloquearEsquina (avR, caR)
+    Pos (avR, caR)
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+      p:= p + 1
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+      f:= f + 1
+    Pos (av, ca)
+    total:= p + f
+    LiberarEsquina (avR, caR)
+  fin
+  proceso enviarID
+  comenzar
+    EnviarMensaje (1, r1)
+    EnviarMensaje (2, r2)
+    EnviarMensaje (3, r3)
+    EnviarMensaje (4, r4)
+  fin
+  proceso calcularMax (E t: numero ; E t1: numero ; E t2: numero ; E t3: numero)
+  comenzar
+    si (t > t1) & (t > t2) & (t > t3)
+      Informar ('robot1', t)
+    si (t1 > t) & (t1 > t2) & (t1 > t3)
+      Informar ('robot2', t1)
+    si (t2 > t) & (t2 > t1) & (t2 > t3)
+      Informar ('robot3', t2)
+    si (t3 > t) & (t3 > t1) & (t3 > t2)
+      Informar ('robot4', t3)
+  fin
+areas
+  ciudadJefe: AreaP (1,1,1,1)
+  inicio: AreaC (10,10,13,10)
+  ciudad: AreaC (45,48,62,69)
+robots
+  robot tipo1 {recolectores}
+  variables
+    av, ca, total, id: numero
+  comenzar
+    av:= PosAv
+    ca:= PosCa
+    RecibirMensaje (id, jefe)
+    repetir 5
+      juntarFyP (av, ca, total)
+    EnviarMensaje (id, jefe)
+    EnviarMensaje (total, jefe)
+  fin
+  robot tipo2 {jefe}
+  variables
+    id, total, total1, total2, total3: numero 
+  comenzar
+    enviarID
+    repetir 4
+      RecibirMensaje (id, *)
+      si (id = 1)
+        RecibirMensaje (total, r1)
+      si (id = 2)
+        RecibirMensaje (total1, r2)
+      si (id = 3)
+        RecibirMensaje (total2, r3)
+      si (id = 4)
+        RecibirMensaje (total3, r4)
+    calcularMax (total, total1, total2, total3)
+  fin
+variables
+  r1: tipo1
+  r2: tipo1
+  r3: tipo1
+  r4: tipo1
+  jefe: tipo2
+comenzar
+  AsignarArea (r1, ciudad)
+  AsignarArea (r2, ciudad)
+  AsignarArea (r3, ciudad)
+  AsignarArea (r4, ciudad)
+  AsignarArea (r1, inicio)
+  AsignarArea (r2, inicio)
+  AsignarArea (r3, inicio)
+  AsignarArea (r4, inicio)
+  AsignarArea (jefe, ciudadJefe)
+  Iniciar (r1, 10,10)
+  Iniciar (r2, 11,10)
+  Iniciar (r3, 12,10)
+  Iniciar (r4, 13,10)
+  Iniciar (jefe, 1,1)
+fin

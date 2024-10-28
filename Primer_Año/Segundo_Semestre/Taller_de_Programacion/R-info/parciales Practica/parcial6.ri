@@ -1,0 +1,98 @@
+programa parcial6
+procesos
+  proceso enviarID
+  comenzar
+    EnviarMensaje (1, r1)
+    EnviarMensaje (2, r2)
+    EnviarMensaje (3, r3)
+    EnviarMensaje (4, r4)
+  fin
+  proceso enviarTarea (E num: numero)
+  comenzar
+    si (num = 1)
+      EnviarMensaje (V, r1)
+      EnviarMensaje (F, r2)
+      EnviarMensaje (F, r3)
+      EnviarMensaje (F, r4)
+    sino
+      si (num = 2)
+        EnviarMensaje (V, r2)
+        EnviarMensaje (F, r1)
+        EnviarMensaje (F, r3)
+        EnviarMensaje (F, r4)
+      sino
+        si (num = 3)
+          EnviarMensaje (V, r3)
+          EnviarMensaje (F, r1)
+          EnviarMensaje (F, r2)
+          EnviarMensaje (F, r4)
+        sino
+          si (num = 4)
+            EnviarMensaje (V, r4)
+            EnviarMensaje (F, r1)
+            EnviarMensaje (F, r2)
+            EnviarMensaje (F, r3)
+  fin
+  proceso juntarF
+  comenzar
+    si (HayFlorEnLaEsquina)
+      tomarFlor
+  fin
+  proceso hacerTarea (E av: numero; E ca: numero)
+  comenzar
+    BloquearEsquina (50,50)
+    Pos (50,50)
+    juntarF
+    Pos (av, ca)
+    LiberarEsquina (50,50)
+  fin
+areas
+  ciudad: AreaPC (50,50,50,50)
+  inicio: AreaC (1,1,5,5)
+robots
+  robot limpiador
+  variables
+    id, av, ca: numero
+    ok: boolean
+  comenzar
+    av:= PosAv
+    ca:= PosCa
+    RecibirMensaje (id, jefe)
+    ok:= F
+    repetir 5
+      RecibirMensaje (ok, jefe)
+      si (ok = V)
+        hacerTarea (av, ca)
+        ok:= F
+  fin
+  robot fiscalizador
+  variables
+    num: numero
+  comenzar
+    enviarID
+    repetir 5
+      Random (num, 1, 4)
+      enviarTarea (num)
+  fin
+variables
+  r1: limpiador
+  r2: limpiador
+  r3: limpiador
+  r4: limpiador
+  jefe: fiscalizador
+comenzar
+  AsignarArea (r1, ciudad)
+  AsignarArea (r2, ciudad)
+  AsignarArea (r3, ciudad)
+  AsignarArea (r4, ciudad)
+  AsignarArea (jefe, inicio)
+  AsignarArea (r1, inicio)
+  AsignarArea (r2, inicio)
+  AsignarArea (r3, inicio)
+  AsignarArea (r4, inicio)
+  Iniciar (jefe, 1,1)
+  Iniciar (r1, 2,2)
+  Iniciar (r2, 3,3)
+  Iniciar (r3, 4,4)
+  Iniciar (r4, 5,5)
+fin

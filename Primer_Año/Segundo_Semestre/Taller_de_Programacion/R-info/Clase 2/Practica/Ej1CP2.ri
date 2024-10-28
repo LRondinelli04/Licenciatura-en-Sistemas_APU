@@ -1,0 +1,71 @@
+programa Ej1CP2
+procesos
+  proceso Recorrer (ES flores:numero)
+  comenzar
+    repetir 9 
+      mientras (HayFlorEnLaEsquina)
+        tomarFlor
+        flores:=flores+1
+      mover
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+      flores:=flores+1
+  fin
+  proceso calcularMax (E flor: numero ; ES max: numero)
+  comenzar 
+    si (flor > max)
+      max:= flor
+  fin
+areas
+  Avenida1: AreaP(1,1,1,10)
+  Avenida2:AreaP(2,11,2,20)
+  Avenida3: AreaP(3,21,3,30)
+  Avenida4: AreaP(4,31,4,40)
+  Avenida5: AreaP(5,41,5,50)
+  Avenida6: AreaP(6,51,6,60)
+  AvenidaF:AreaP(2,1,2,1)
+robots
+  robot tipo1
+  variables
+    f1: numero
+    num: numero
+  comenzar
+    f1:= 0
+    Recorrer (f1)
+    EnviarMensaje (f1, robot3)
+  fin
+  robot tipo2
+  variables
+    f1: numero
+    max: numero
+  comenzar
+    max:= -1
+    repetir 6
+      RecibirMensaje (f1, *)
+      calcularMax (f1, max)
+    Informar (max)
+  fin
+variables
+  robot1:tipo1
+  robot2:tipo1
+  robot3: tipo1
+  robot4: tipo1
+  robot5: tipo1
+  robot6: tipo1
+  fiscalizador:tipo2
+comenzar
+  AsignarArea(robot1,Avenida1)
+  AsignarArea(robot2,Avenida2)
+  AsignarArea(robot3, Avenida3)
+  AsignarArea(robot4, Avenida4)
+  AsignarArea(robot5, Avenida5)
+  AsignarArea(robot6, Avenida6)
+  AsignarArea(fiscalizador,AvenidaF)
+  Iniciar(robot1, 1, 1)
+  Iniciar(robot2, 2, 11) 
+  Iniciar(robot3, 3, 21)
+  Iniciar(robot4, 4, 31)
+  Iniciar(robot5, 5, 41)
+  Iniciar(robot6, 6, 51)
+  Iniciar(fiscalizador, 2, 1) 
+fin

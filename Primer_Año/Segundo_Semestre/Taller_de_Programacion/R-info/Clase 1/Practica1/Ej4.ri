@@ -1,0 +1,153 @@
+programa Ej4
+procesos
+  proceso recorrerFloreroAv (E x: numero)
+  comenzar
+    repetir 24
+      repetir 99
+        mientras (HayFlorEnLaEsquina)
+          tomarFlor
+        mover
+      mientras (HayFlorEnLaEsquina)
+        tomarFlor
+      Pos (PosAv+1, 1)
+    repetir 99
+      mientras (HayFlorEnLaEsquina)
+        tomarFlor
+      mover
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+  fin
+  proceso recorrerFloreroCa (E x: numero)
+  comenzar
+    derecha
+    repetir 99
+      repetir 24 
+        mientras (HayFlorEnLaEsquina)
+          tomarFlor
+        mover
+      mientras (HayFlorEnLaEsquina)
+        tomarFlor
+      Pos (1, PosCa+1)
+    repetir 24
+      mientras (HayFlorEnLaEsquina)
+        tomarFlor
+      mover
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+  fin
+  proceso recorrerFloreroCa2 (E x: numero)
+  comenzar
+    derecha
+    repetir 99
+      repetir 24 
+        mientras (HayFlorEnLaEsquina)
+          tomarFlor
+        mover
+      mientras (HayFlorEnLaEsquina)
+        tomarFlor
+      Pos (51, PosCa+1)
+    repetir 24
+      mientras (HayFlorEnLaEsquina)
+        tomarFlor
+      mover
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+  fin
+  proceso recorrerPapeleroAv (E x: numero)
+  comenzar
+    repetir 24
+      repetir 99
+        mientras (HayPapelEnLaEsquina)
+          tomarPapel
+        mover
+      mientras (HayPapelEnLaEsquina)
+        tomarPapel
+      Pos (PosAv+1, 1)
+    repetir 99
+      mientras (HayPapelEnLaEsquina)
+        tomarPapel
+      mover
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+  fin
+  proceso recorrerPapeleroCa (E x: numero)
+  comenzar
+    derecha
+    repetir 99
+      repetir 24
+        mientras (HayPapelEnLaEsquina)
+          tomarPapel
+        mover
+      mientras (HayPapelEnLaEsquina)
+        tomarPapel
+      Pos (26, PosCa+1)
+    repetir 24
+      mientras (HayPapelEnLaEsquina)
+        tomarPapel
+      mover
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+  fin
+  proceso recorrerPapeleroCa2 (E x: numero)
+  comenzar
+    derecha
+    repetir 99
+      repetir 24
+        mientras (HayPapelEnLaEsquina)
+          tomarPapel
+        mover
+      mientras (HayPapelEnLaEsquina)
+        tomarPapel
+      Pos (76, PosCa+1)
+    repetir 24
+      mientras (HayPapelEnLaEsquina)
+        tomarPapel
+      mover
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+  fin
+areas
+  ciudad1: AreaPC (1,1,25,100)
+  ciudad2: AreaPC (26,1,50,100)
+  ciudad3: AreaPC (51,1,75,100)
+  ciudad4: AreaPC (76,1,100,100)
+robots
+  robot tipo1
+  variables
+    x: numero
+  comenzar
+    recorrerFloreroAv (x)
+    Pos (1,1)
+    recorrerFloreroCa (x)
+    Pos (51,1)
+    repetir 3 
+      derecha
+    recorrerFloreroAv (x)
+    Pos (51,1)
+    recorrerFloreroCa2 (x)
+  fin
+  robot tipo2
+  variables
+    x: numero
+  comenzar
+    recorrerPapeleroAv (x)
+    Pos (26,1)
+    recorrerPapeleroCa (x)
+    Pos (76,1)
+    repetir 3 
+      derecha
+    recorrerPapeleroAv (x)
+    Pos (76,1)
+    recorrerPapeleroCa2 (x)
+  fin
+variables
+  florero: tipo1
+  papelero: tipo2
+comenzar
+  AsignarArea (florero, ciudad1)
+  AsignarArea (florero, ciudad3)
+  AsignarArea (papelero, ciudad2)
+  AsignarArea (papelero, ciudad4)
+  Iniciar (florero, 1, 1)
+  Iniciar (papelero, 26, 1)
+fin

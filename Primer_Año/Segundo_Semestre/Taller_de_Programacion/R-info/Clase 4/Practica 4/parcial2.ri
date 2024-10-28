@@ -1,0 +1,128 @@
+{PARCIALES DEL DRIVE DE LW}
+programa parcial2
+procesos
+  proceso juntarF (ES f: numero)
+  comenzar
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+      f:= f + 1
+  fin
+  proceso juntarP (ES p: numero)
+  comenzar
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+      p:= p + 1
+  fin
+  proceso recorrerPapel (ES p: numero)
+  comenzar
+    repetir 7
+      juntarP (p)
+      mover
+    BloquearEsquina (7,12)
+    BloquearEsquina (21, 12)
+    repetir 2
+      juntarP (p)
+      mover
+    LiberarEsquina (7,12)
+    LiberarEsquina (21,12)
+    repetir 11
+      juntarP (p)
+      mover
+    juntarP (p)
+  fin
+  proceso recorrerFlor (ES f: numero)
+  comenzar
+    derecha
+    repetir 4
+      juntarF (f)
+      mover
+    BloquearEsquina (7,12)
+    BloquearEsquina (21,12)
+    repetir 2
+      juntarF (f)
+      mover
+    LiberarEsquina (7,12)
+    LiberarEsquina (21,12)
+    repetir 4
+      juntarF (f)
+      mover
+    juntarF (f)
+  fin
+  proceso calcularMax (E f: numero ; E p: numero ; ES total: numero)
+  comenzar
+    si (f > p)
+      total:= f
+      Informar ('equipoFlorero', total)
+    si (f < p)
+      total:= p
+      Informar ('equipoPapelero', total)
+    sino
+      Informar ('empate', 2)  
+  fin
+areas
+  ciudadF1: AreaP (2,12,12,12)
+  ciudadF2: AreaP (16,12,26,12)
+  ciudadP1: AreaP (7,4,7,24)
+  ciudadP2: AreaP (21,4,21,24)
+  ciudadFisc: AreaP (1,1,1,1)
+robots
+  robot tipo1 {floreros}
+  variables
+    f, id: numero                   
+  comenzar
+    f:= 0
+    RecibirMensaje (id, fisca)
+    recorrerFlor (f)
+    EnviarMensaje (id, fisca)
+    EnviarMensaje (f, fisca)
+  fin
+  robot tipo2 {papeleros}
+  variables
+    p, id: numero
+  comenzar
+    p:= 0
+    RecibirMensaje (id, fisca)
+    recorrerPapel (p)
+    EnviarMensaje (id, fisca)
+    EnviarMensaje (p, fisca)
+  fin
+  robot tipo3 {fiscalizador}
+  variables
+    id, flor1, flor2, papel1, papel2, total: numero
+  comenzar
+    EnviarMensaje (1, f1)
+    EnviarMensaje (2, f2)
+    EnviarMensaje (3, p1)
+    EnviarMensaje (4, p2)
+    repetir 4
+      RecibirMensaje (id, *)
+      si (id = 1)
+        RecibirMensaje (flor1, f1)
+      si (id = 2)
+        RecibirMensaje (flor2, f2)
+      si (id = 3)
+        RecibirMensaje (papel1, p1)
+      si (id = 4)
+        RecibirMensaje (papel2, p2)
+    flor1:= flor1 + flor2
+    papel1:= papel1 + papel2
+    calcularMax (flor1, papel1, total)
+  fin
+variables
+  f1: tipo1
+  f2: tipo1
+  p1: tipo2
+  p2: tipo2
+  fisca: tipo3
+comenzar
+  AsignarArea (f1, ciudadF1)
+  AsignarArea (f2, ciudadF2)
+  AsignarArea (p1, ciudadP1)
+  AsignarArea (p2, ciudadP2)
+  AsignarArea (fisca, ciudadFisc)
+  Iniciar (f1, 2, 12)
+  Iniciar (f2, 16, 12)
+  Iniciar (p1, 7, 4)
+  Iniciar (p2, 21, 4)
+  Iniciar (fisca, 1, 1)
+fin

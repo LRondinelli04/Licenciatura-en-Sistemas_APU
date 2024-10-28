@@ -1,0 +1,107 @@
+programa parcial5
+procesos
+  proceso enviarID
+  comenzar
+    EnviarMensaje (1, r1)
+    EnviarMensaje (2, r2)
+    EnviarMensaje (3, r3)
+  fin
+  proceso juntarP (ES p: numero)
+  comenzar
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+      p:= p + 1
+  fin
+  proceso recorrerAv (E id: numero; ES cantPasos: numero; ES p: numero)
+  variables
+    pasos: numero
+  comenzar
+    si (id = 1)
+      Random (pasos, 1, 10)
+      cantPasos:= cantPasos + pasos
+      repetir pasos
+        juntarP (p)
+        mover
+      juntarP (p)
+    sino
+      si (id = 2)
+        Random (pasos, 1, 10)
+        cantPasos:= cantPasos + pasos
+        repetir pasos
+          juntarP (p)
+          mover
+        juntarP (p)
+      sino
+        Random (pasos, 1, 10)
+        cantPasos:= cantPasos + pasos
+        repetir pasos
+          juntarP (p)
+          mover
+        juntarP (p)
+  fin
+  proceso depositarPapeles
+  comenzar
+    mientras (HayPapelEnLaBolsa)  
+      depositarPapel
+  fin
+  proceso depositarP (E av: numero; E ca: numero)
+  comenzar
+    BloquearEsquina (1, 30)
+    Pos (1, 30)
+    depositarPapeles
+    Pos (av, ca)
+    LiberarEsquina (av, ca)
+  fin
+areas
+  ciudad: AreaPC (1,1,21,40)
+  ciudadJefe: AreaP (25,1,25,1)
+robots
+  robot tipo1 {corredores}
+  variables
+    id: numero
+    av: numero
+    ca: numero
+    cantPasos: numero
+    p: numero
+  comenzar
+    p:= 0
+    RecibirMensaje (id, jefe)
+    cantPasos:= 0
+    ca:= PosCa
+    si (id = 1)
+      Random (av, 1, 7)
+    sino
+      si (id = 2)
+        Random (av, 8, 14)
+      sino
+        Random (av, 15, 21)
+    Pos (av, ca)
+    repetir 5
+      recorrerAv (id, cantPasos, p)
+    si (id = 1)
+      si ((PosAv = 1) & (PosCa = 30)) {en caso de que r1 se encuentre en el centro para depositar papeles}
+        mover
+    av:= PosAv
+    ca:= PosCa
+    repetir p
+      depositarP (av, ca)
+  fin
+  robot tipo2 {jefe}
+  comenzar
+    enviarID
+  fin
+variables
+  r1: tipo1
+  r2: tipo1
+  r3: tipo1
+  jefe: tipo2
+comenzar
+  AsignarArea (r1, ciudad)
+  AsignarArea (r2, ciudad)
+  AsignarArea (r3, ciudad)
+  AsignarArea (jefe, ciudadJefe)
+  Iniciar (r1, 1,1)
+  Iniciar (r2, 8,1)
+  Iniciar (r3, 15,1)
+  Iniciar (jefe, 25,1)
+fin
