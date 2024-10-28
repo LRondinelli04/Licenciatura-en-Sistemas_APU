@@ -3,15 +3,14 @@ package ar.edu.unlp.info.oo1._Parcial;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class Embarcacion implements Bien {
+public class Embarcacion implements Bien{
 
 	private String patente, nombre;
 	private LocalDate fechaFabricacion;
 	private double valor;
 	private Contribuyente contribuyente;
-
-	public Embarcacion(String patente, String nombre, LocalDate fechaFabricacion, double valor,
-			Contribuyente contribuyente) {
+	
+	public Embarcacion(String patente, String nombre, LocalDate fechaFabricacion, double valor, Contribuyente contribuyente) {
 		this.patente = patente;
 		this.nombre = nombre;
 		this.fechaFabricacion = fechaFabricacion;

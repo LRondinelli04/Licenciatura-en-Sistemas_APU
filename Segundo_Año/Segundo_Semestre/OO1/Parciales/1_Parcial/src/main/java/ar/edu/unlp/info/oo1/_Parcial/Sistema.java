@@ -12,29 +12,25 @@ import java.util.stream.Collectors;
 public class Sistema {
 
 	/*
-	 * Dar de alta un contribuyente
-	 * 
-	 * 
-	 * 
-	 * BIENES: 
-	 * dar de alta un inmueble
-	 * 
-	 * dar de alta un automotr
-	 * 
-	 * dar de alta una embarcacion
-	 * 
-	 * 
-	 * --------------
-	 * 
-	 * 
-	 * calcular el impuesto que debe pagar un contribuyente
-	 * 
-	 * contribuyentes que mas pagan de una localidad
-	 * */
-	
-	/*
-	 * el sistema tiene una lista de contribuyentes donde cada contribuyente tiene su bien registrado
-	 * */
+	 *
+	 *  Hacer un sistema para el calculo de impuesto que debem pagar los contribuyentes
+	 *  
+	 *  
+	 *  el sistema debe:
+	 *  	
+	 *  
+	 *  	dar de alta un contribuyente
+	 *  
+	 *  	dar de alta un BIEN
+	 *  		
+	 *  		- inmueble
+	 *  		- automotor
+	 *  		- embarcacion
+	 *  
+	 *  	calcular el impuesto que debe pagar un contribuyente
+	 *  
+	 *  	contribuyentes que mas pagan de una localidad
+	 */
 	
 	private List<Contribuyente> contribuyentes;
 	
@@ -42,54 +38,24 @@ public class Sistema {
 		this.contribuyentes = new ArrayList<Contribuyente>();
 	}
 	
-	public Contribuyente darAltaContribuyente(Contribuyente contribuyente) {
-		this.contribuyentes.add(contribuyente);
-		return contribuyente;
+	public Contribuyente darAltaContribuyente(String nombre, int dni, String email, String localidad) {
+		Contribuyente c = new Contribuyente(nombre, dni, email, localidad);
+		this.contribuyentes.add(c);
+		return c;
 	}
 	
-	public Inmueble darAltaInmbueble(int numeroPartida, double valorLote, double valorEdificacion, Contribuyente contribuyente) {
-		Inmueble bien = new Inmueble(numeroPartida, valorLote, valorEdificacion, contribuyente);
-		contribuyente.registrarBien(bien);
-		return bien;
+	public List<Contribuyente> contribuyentesMasPagan(String localidad, int n){
+		// Tomo los contribuyentes de 1 zona especifica
+		List<Contribuyente> contribuyentesLocalidad = 	this.contribuyentes.stream()
+														.filter(contribuyente -> contribuyente.getLocalidad().equals(localidad))
+														.collect(Collectors.toList());
+		
+		// retorno los n contribuyentes de esa zona que mas pagan
+		return 	contribuyentesLocalidad.stream()
+				.sorted((c1, c2) -> Double.compare(c2.impuestoAPagar(), c1.impuestoAPagar()))
+				.limit(n)
+				.collect(Collectors.toList());
 	}
 	
-	public Automotor darAltaAutomotor(String patente, String marca, String modelo, LocalDate fechaFabricacion, double valor, Contribuyente contribuyente) {
-		Automotor bien = new Automotor(patente, marca, modelo, fechaFabricacion, valor, contribuyente);
-		contribuyente.registrarBien(bien);
-		return bien;
-	}
 	
-	public Embarcacion darAltaEmbarcacion(String patente, String nombre, LocalDate fechaFabricacion, double valor, Contribuyente contribuyente) {
-		Embarcacion bien = new Embarcacion(patente, nombre, fechaFabricacion, valor, contribuyente);
-		contribuyente.registrarBien(bien);
-		return bien;
-	}
-	
-	public double impuestoPagarContribuyente(Contribuyente contribuyente) {
-		double montoTotal = 0.0;
-		for (Contribuyente c : this.contribuyentes) {
-			if (c.equals(contribuyente)) {
-				montoTotal = c.impuestoAPagar();
-			}
-		}
-		return montoTotal;
-	}
-	
-	public void contribuyentesMasPagan(String localidad, int N) {
-	    List<Contribuyente> cMasPagan = this.contribuyentes.stream()
-	        // Filtrar contribuyentes por localidad
-	        .filter(c -> c.getLocalidad().equals(localidad))
-	        // Ordenar por impuesto a pagar de forma descendente
-	        .sorted((c1, c2) -> Double.compare(c2.impuestoAPagar(), c1.impuestoAPagar()))
-	        // Limitar a N resultados
-	        .limit(N)
-	        // Recoger los resultados en una lista
-	        .collect(Collectors.toList());
-
-	    // Imprimir los nombres de los contribuyentes
-	    for (Contribuyente c : cMasPagan) {
-	        System.out.println(c.getNombre());
-	    }
-	}
-	
-}
+}	

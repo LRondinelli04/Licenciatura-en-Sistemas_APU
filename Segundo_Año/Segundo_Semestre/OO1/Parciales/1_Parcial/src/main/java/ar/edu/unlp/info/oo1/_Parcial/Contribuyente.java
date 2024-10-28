@@ -8,16 +8,18 @@ public class Contribuyente {
 	private String nombre, email, localidad;
 	private List<Bien> bienes;
 	
-	public Contribuyente(String nombre, String email, String localidad) {
+	public Contribuyente(String nombre, int dni, String email, String localidad) {
 		this.nombre = nombre;
 		this.email = email;
 		this.localidad = localidad;
 		this.bienes = new ArrayList<Bien>();
 	}
 	
-	public void registrarBien(Bien bien) {
+	public Bien registrarBien(Bien bien) {
 		this.bienes.add(bien);
+		return bien;
 	}
+	
 	
 	// Calcular el impuesto a pagar por un contribuyente
 	public double impuestoAPagar() {
@@ -34,5 +36,9 @@ public class Contribuyente {
 	
 	public String getLocalidad() {
 		return this.localidad;
+	}
+	
+	public double impuestoPagarContribuyente() {
+		return this.bienes.stream().mapToDouble(Bien::calcularImpuesto).sum();
 	}
 }
