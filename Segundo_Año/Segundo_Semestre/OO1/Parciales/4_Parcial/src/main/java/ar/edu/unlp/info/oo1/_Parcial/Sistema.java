@@ -46,18 +46,38 @@ public class Sistema {
 		return c;
 	}
 	
-	public Nacional registrarProductoNacional(String nombre, double costoUnitario, String descripcion) {
-		Nacional prodN = new Nacional(nombre, descripcion, costoUnitario);
-		this.productos.add(prodN);
-		return prodN;
+	public Producto registrarProducto(Producto producto) {
+		this.productos.add(producto);
+		return producto;
 	}
 	
-	public Importado registrarProductoImportado(String nombre, double costoUnitario, String descripcion, String paisOrigen) {
-		Importado prodI = new Importado(nombre, descripcion, costoUnitario, paisOrigen);
-		this.productos.add(prodI);
-		return prodI;
+	public List<Cliente> getClientes() {
+		return this.clientes;
 	}
 	
+	public List<Producto> getProductos() {
+		return this.productos;
+	}
+	
+	
+	public int cantTotalSolicitadaProducto(Producto producto) {
+		int total = 0;
+		for (Cliente cliente : this.clientes) {
+			return cliente.cantProductoSolicitado(producto);
+		}
+		return total;
+	}
+	
+	public List<Cliente> topClientes() {
+		LocalDate fechaLimite = LocalDate.now().minusDays(30);
+		
+		return  this.clientes.stream()
+				.sorted((c1, c2) -> Double.compare(c2.costoTotalPedidosEnPeriodo(fechaLimite, LocalDate.now()), c1.costoTotalPedidosEnPeriodo(fechaLimite, LocalDate.now())))
+				.limit(5)
+				.collect(Collectors.toList());
+	}
+	
+	/*
 	public Pedido registrarPedidoParaCliente(Cliente cliente) {
 		Pedido pedido = new Pedido(cliente);
 		cliente.registrarPedido(pedido);
@@ -116,5 +136,5 @@ public class Sistema {
 		.limit(5) // limito los primeros 5
 		.collect(Collectors.toList());
 	}
-
+*/
 }

@@ -6,29 +6,48 @@ import java.util.List;
 
 public class Pedido {
 
-	private Cliente cliente;
 	private LocalDate fechaPedido;
 	private List<Item> items;
 	
-	public Pedido(Cliente cliente) {
-		this.cliente = cliente;
-		this.fechaPedido = LocalDate.of(2024, 9, 20);
+	public Pedido() {
+		this.fechaPedido = LocalDate.now();
 		this.items = new ArrayList<Item>();
 	}
 	
-	public Cliente getCliente() {
-		return this.cliente;
-	}
-	
-	public void registrarItem(Item item) {
+	public void agregarItem(Item item) {
 		this.items.add(item);
 	}
 	
-	public List<Item> getItem(){
+	public List<Item> getItems() {
 		return this.items;
 	}
 	
-	public LocalDate getFecha() {
-		return this.fechaPedido;
+	public int cantProductoSolicitado(Producto producto) {
+		int total = 0;
+		for (Item item : this.items) {
+			if (item.getProducto().equals(producto)) {
+				return item.getCantNecesaria();
+			}
+		}
+		return total;
 	}
+	
+	public double calcularCostoPedido(LocalDate fechaInicio, LocalDate fechaFin) {
+		double total = 0;
+		double costoItem = 0;
+		double impuesto = 0;
+		
+		for (Item item : this.items) {
+			costoItem = item.getProducto().costoUnitario * item.getCantNecesaria();
+			impuesto = item.getProducto().calcularImpuesto(item.getCantNecesaria(), item.getProducto().costoUnitario);
+			total += costoItem + impuesto;
+		}
+		
+		return total;
+	}
+	
+	
+	
+	
+	
 }

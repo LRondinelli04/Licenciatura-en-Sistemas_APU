@@ -5,18 +5,12 @@ public abstract class Producto {
 	protected String nombre, descripcion;
 	protected double costoUnitario;
 	
-	public Producto(String nombre, String descripcion, double costoUnitario) {
+	public Producto(String nombre, double costoUnitario, String descripcion) {
 		this.nombre = nombre;
-		this.descripcion = descripcion;
 		this.costoUnitario = costoUnitario;
+		this.descripcion = descripcion;
 	}
 	
-	public String getNombre() {
-		return this.nombre;
-	}
-	
-	public abstract double calcularImpuesto(int cantSolicitada);
-	
-	
+	public abstract double calcularImpuesto(int cantNecesaria, double costoUnitario);
 	
 }
