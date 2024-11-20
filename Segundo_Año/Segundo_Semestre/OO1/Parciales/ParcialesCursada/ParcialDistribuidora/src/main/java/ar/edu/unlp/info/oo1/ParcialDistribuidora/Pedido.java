@@ -31,7 +31,7 @@ public class Pedido {
 	}
 	
 	public boolean pedidoEnFecha(LocalDate fi, LocalDate ff) {
-		if (this.fechaPedido.isAfter(fi) && this.fechaPedido.isBefore(ff)) {
+		if (!this.fechaPedido.isBefore(fi) && !this.fechaPedido.isAfter(ff)) {
 			return true;
 		} else {
 			return false;

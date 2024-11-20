@@ -36,10 +36,4 @@ public class Cliente {
 				.mapToDouble(pedido -> pedido.costoTotalPedidos())
 				.sum();
 	}
-	
-	public List<Pedido> getUltimosPedidos() {
-		return this.pedidos.stream()
-				.filter(pedido -> pedido.getFechaPedido().isAfter(LocalDate.now().minusDays(30)))
-				.collect(Collectors.toList());
-	}
 }
