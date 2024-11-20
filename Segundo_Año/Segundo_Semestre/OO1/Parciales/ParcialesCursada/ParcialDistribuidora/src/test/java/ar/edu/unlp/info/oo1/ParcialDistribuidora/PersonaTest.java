@@ -1,6 +1,11 @@
 /*
  * 3)
  * FUNCIONALIDAD -> CALCULAR EL COSTO TOTAL DE LOS PEDIDOS DE UN CLIENTE EN UN PERIODO
+ * TENER EN CUENTA:
+ *  - Valores de borde
+ *  - Particiones equivalentes
+ * 
+ * ESPECIFICAR LAS CALSES A TESTEAR CON LOS METODOS QUE INVOLUCRAN LA EJECUCION DEL "Calcular Costo total de pedidos de un cliente en un periodo"
  * 
  * Cliente::costoTotalPedidos()
  * 	- No hay pedidos en la lista
