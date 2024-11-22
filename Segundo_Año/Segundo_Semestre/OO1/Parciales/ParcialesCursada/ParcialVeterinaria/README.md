@@ -1,1 +1,3 @@
-Arquetipos de Orientacion a Objetos
+# Parcial Veterinaria
+
+ ![Primer Veterinaria](ParcialVeterinaria.jpeg)
