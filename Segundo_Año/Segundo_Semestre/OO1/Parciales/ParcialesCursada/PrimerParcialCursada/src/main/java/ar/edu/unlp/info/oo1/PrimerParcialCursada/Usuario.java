@@ -40,9 +40,9 @@ public class Usuario {
 	
 	public Entrada siguienteEvento() {
 		return this.entradas.stream()
-			.filter(e -> e.getFechaEvento().isAfter(LocalDate.now()) // Filtrar solamente eventos futuros
-			.sorted((e1, e2) -> e1.getFechaEveneto().compareTo(e2.getFechaEvento()) // Ordenar por fecha
-			.findFirst() // Obtener el primer evento 
-			.orElse(null); // Retornar null si no hay eventos
+				.filter(e -> e.getFechaEvento().isAfter(LocalDate.now())) // Filtra las entradas que tienen fecha de evento posterior a la fecha actual
+				.sorted((e1, e2) -> e1.getFechaEvento().compareTo(e2.getFechaEvento())) // Ordena las entradas por fecha de evento
+				.findFirst() // Devuelve la primera entrada que cumple con las condiciones anteriores
+				.orElse(null); // Si no hay ninguna entrada que cumpla con las condiciones anteriores, devuelve null
 	}
 }
