@@ -31,9 +31,9 @@
  *          - El servicio se realizo un dia domingo  
  *          - El servicio se realizo cualquier otro dia de la semana
  * 
- * 		- Guarderia::montoRecaudacion()
- * 			- La mascota tiene contratado 4 Servicios (no se hace descuento)
- * 			- La mascota tiene contratado 5 Servicios (se hace descuento)
+ * 		   - Guarderia::montoRecaudacion()
+ * 			      - La mascota tiene contratado 4 Servicios (no se hace descuento)
+ * 			      - La mascota tiene contratado 5 Servicios (se hace descuento)
  *          - La mascota tiene contratado la Guarderia por 0 dias
  *          - La mascota tiene contratado la Guarderia por al menos 1 dia
  *          - La mascota tiene contratado la Guarderia por muchos dias (ej: 10 dias)
