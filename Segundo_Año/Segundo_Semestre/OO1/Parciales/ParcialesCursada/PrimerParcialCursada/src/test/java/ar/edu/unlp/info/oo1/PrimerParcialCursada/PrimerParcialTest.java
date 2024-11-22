@@ -1,5 +1,5 @@
 /*
- * 
+ * 3)
  * 
  * FUNCIONALIDAD --> Calcular monto a recuperar por una entrada
  * 
