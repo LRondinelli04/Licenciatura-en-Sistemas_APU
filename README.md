@@ -1,7 +1,9 @@
 # Licenciatura en Sistemas y APU
 
+<div align="center"> 
+[![GitHub stars](https://img.shields.io/github/stars/LRondinelli04/Licenciatura-en-Sistemas_APU)](https://github.com/LRondinelli04/Licenciatura-en-Sistemas_APU/stargazers/)
 [![GitHub repo size in bytes](https://img.shields.io/github/repo-size/LRondinelli04/Licenciatura-en-Sistemas_APU)](https://github.com/LRondinelli04/Licenciatura-en-Sistemas_APU)
-
+</div> 
 ## Descripción
 
 Este repositorio contiene todos los archivos de prácticas y resolución de parciales elaborados en el marco de las materias relacionadas con la programación en la Facultad de Informática - UNLP. El objetivo es proporcionar una colección de ejercicios y proyectos que demuestren las habilidades y técnicas aprendidas durante el transcurso de la carrera.
