@@ -1,8 +1,9 @@
 # Licenciatura en Sistemas y APU
 
 <div align="center"> 
-[![GitHub stars](https://img.shields.io/github/stars/LRondinelli04/Licenciatura-en-Sistemas_APU)](https://github.com/LRondinelli04/Licenciatura-en-Sistemas_APU/stargazers/)
+  
 [![GitHub repo size in bytes](https://img.shields.io/github/repo-size/LRondinelli04/Licenciatura-en-Sistemas_APU)](https://github.com/LRondinelli04/Licenciatura-en-Sistemas_APU)
+
 </div> 
 ## Descripción
 
