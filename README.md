@@ -1,4 +1,11 @@
+<div align="center"> 
+  
 # Licenciatura en Sistemas y APU
+
+  
+[![GitHub repo size in bytes](https://img.shields.io/github/repo-size/LRondinelli04/Licenciatura-en-Sistemas_APU)](https://github.com/LRondinelli04/Licenciatura-en-Sistemas_APU)
+
+</div> 
 
 ## Descripción
 
