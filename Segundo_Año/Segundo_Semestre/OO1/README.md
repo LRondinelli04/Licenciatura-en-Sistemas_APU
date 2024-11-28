@@ -7,10 +7,10 @@ Esta carpeta contiene todos los archivos de prácticas y prácticas de parciales
 ## Lenguajes y Tecnologías
 - ### Java
 
-- ### Entornos de Desarrollo (IDE): 
-    - Eclipse.
-    - NetBeans.
-    - VSCode.
+### Entornos de Desarrollo (IDE): 
+- Eclipse.
+- NetBeans.
+- VSCode.
 
 ## Estructura del Repositorio
 
