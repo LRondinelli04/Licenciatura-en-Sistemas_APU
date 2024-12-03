@@ -1,9 +1,8 @@
-package ar.edu.unlp.info.oo1.PrimerParcialCursada;
+package ar.edu.unlp.info.oo1.ParcialCursada;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Usuario {
 
@@ -15,34 +14,25 @@ public class Usuario {
 		this.entradas = new ArrayList<Entrada>();
 	}
 	
-	public Entrada comprarEntrada(Evento e, boolean seguro) {
-		Entrada entrada = new Entrada(e, seguro);
-		this.entradas.add(entrada);
-		return entrada;
-	}
 	
-	public double montoRecuprar(Entrada entrada) {
-		double monto = 0;
-		for (Entrada e : this.entradas) {
-			if (e.equals(entrada)) {
-				monto = e.calcularRembolso();
-			}
-		}
-		return monto;
+	public Entrada comprarEntrada(Evento evento, boolean seguro) {
+		Entrada e = new Entrada(this, evento, seguro);
+		this.entradas.add(e);
+		return e;
 	}
 	
 	public double montoTotalEntradas(LocalDate fi, LocalDate ff) {
 		return this.entradas.stream()
-				.filter(entrada -> entrada.entradaEnFecha(fi, ff))
-				.mapToDouble(entrada -> entrada.calcularPrecioCompra())
+				.filter(e -> e.getFechaCompra().isAfter(fi) && e.getFechaCompra().isBefore(ff)) // filtro la lista con las entradas entre las fechas
+				.mapToDouble(e -> e.getEvento().precioAsistencia(e.getFechaCompra()) + e.getPrecioSeguro()) // sumo el precio de las entradas a los eventos (precio de asistencia + el precio del seguro // puede ser 0 o 500)
 				.sum();
 	}
 	
-	public Entrada siguienteEvento() {
+	public Entrada getProxEvento() {
 		return this.entradas.stream()
-				.filter(e -> e.getFechaEvento().isAfter(LocalDate.now())) // Filtra las entradas que tienen fecha de evento posterior a la fecha actual
-				.sorted((e1, e2) -> e1.getFechaEvento().compareTo(e2.getFechaEvento())) // Ordena las entradas por fecha de evento
-				.findFirst() // Devuelve la primera entrada que cumple con las condiciones anteriores
-				.orElse(null); // Si no hay ninguna entrada que cumpla con las condiciones anteriores, devuelve null
+				.filter(e -> e.getEvento().fechaEvento.isAfter(LocalDate.now())) // filtro las fecha posteriores a la fecha actual
+				.sorted((e1, e2) -> e1.getEvento().fechaEvento.compareTo(e2.getEvento().fechaEvento)) // ordeno la lista de menor a mayor (por fecha del evento)
+				.findFirst() // retorno el primer evento
+				.orElse(null);
 	}
 }

@@ -3,31 +3,29 @@
  * 
  * FUNCIONALIDAD --> Calcular monto a recuperar por una entrada
  * 
- * Usuario::montoRecuperar():
- * 	- El usuario no tiene entradas
- * 	- El usuario tiene al menos 1 entrada
- * 
- * Entrada::calcularRembolso():
- * 	- La consulta de dias entre la fecha de compra con la actual es de 29 dias
- * 	- La consulta de dias entre la fecha de compra con la actual es de 30 dias
- * 	- La consulta de dias entre la fecha de compra con la actual es de 30 dias y comprando el seguro
- * 
- * Evento::precioAsistencia():
- * 	- la fecha de consulta no se hace el mismo dia que el evento
- * 	- La fecha de la consulta se hace el mismo dia que el evento
- * 	*Presencial::precioAsistencia():
- * 		- No hay sedes para el evento presencial
- * 		- Hay al menos 1 sede para el evento presencial
-
- * 
- * 
+ *  Entrada::montoARecuperar()
+ *      - Si la diferencia de dias entre la fecha de compra con la fecha del evento es mayor o igual a 30
+ *          - Si tiene seguro de compra
+ *          - Si no tiene seguro de compra
+ *      - Si la diferencia de dias entre la fecha de compra con la fecha del evento es menor a 30
+ *          - Si tiene seguro de compra
+ *          - Si no tiene seguro de compra
+ *  
+ *  Evento::EventoPresencial::precioAsistencia()
+ *      - El evento presencial no tiene sedes
+ *      - El evento presencial tiene al menos 1 sede
+ *       ::consultarFechaEvento()
+ *          - Si la fecha de compra fue realizada el mismo dia que la consulta
+ *          - Si la fecha de compra fue realizada en una fecha distinta a la consulta
+ *  Evento::EventoVirtual::precioAsistencia()
+ *       ::consultaFechaEvento()
+ *          - Si la fecha de compra fue realizada el mismo dia que la consulta
+ *          - Si la fecha de compra fue realizada en una fecha distinta a la consulta
  * 
  * 
  */
 
 // 4)
-// Crear Sistema de eventos
-SistemaEvento se = new SistemaEvento();
 // Crear un usuario y un evento
 Usuario u = new Usuario("Lucas");
 Presencial ep = new Presencial("Presencial", LocalDate.now(), "tema principal", 100, 50);
@@ -36,9 +34,6 @@ Sede s1 = new Sede("sede1", 100, 10);
 Sede s2 = new Sede("sede2", 10, 10);
 ep.addSede(s1);
 ep.addSede(s2);
-// cargo el evento y el usuario al sistema
-se.addUsuario(u);
-se.addEvento(ep);
 // Usuario compra entrada (sin seguro)
 u.comprarEntrada(ep, false);
 

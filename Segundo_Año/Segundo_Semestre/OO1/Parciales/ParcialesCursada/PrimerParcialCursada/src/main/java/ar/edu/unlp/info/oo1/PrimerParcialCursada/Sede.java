@@ -1,4 +1,4 @@
-package ar.edu.unlp.info.oo1.PrimerParcialCursada;
+package ar.edu.unlp.info.oo1.ParcialCursada;
 
 public class Sede {
 
@@ -12,7 +12,7 @@ public class Sede {
 		this.cantDias = cd;
 	}
 	
-	public double precioSede() {
+	public double calcPrecioSede() {
 		return this.precio * this.cantDias;
 	}
 	

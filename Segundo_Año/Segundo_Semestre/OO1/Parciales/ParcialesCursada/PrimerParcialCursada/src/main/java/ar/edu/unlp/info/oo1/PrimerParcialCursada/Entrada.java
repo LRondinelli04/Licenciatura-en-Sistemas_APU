@@ -1,18 +1,19 @@
-package ar.edu.unlp.info.oo1.PrimerParcialCursada;
+package ar.edu.unlp.info.oo1.ParcialCursada;
 
 import java.time.LocalDate;
 import java.time.Period;
 
 public class Entrada {
 
+	private Usuario usuario;
 	private Evento evento;
 	private boolean seguro;
 	private double precioSeguro;
 	private LocalDate fechaCompra;
 	
-	public Entrada(Evento e, boolean s) {
+	public Entrada(Usuario u, Evento e, boolean s) {
+		this.usuario = u;
 		this.evento = e;
-		this.seguro = s;
 		if (s) {
 			this.precioSeguro = 500;
 		} else {
@@ -21,36 +22,30 @@ public class Entrada {
 		this.fechaCompra = LocalDate.now();
 	}
 	
-	public double calcularPrecioCompra() {
-		return this.evento.precioAsistencia() + this.precioSeguro;
+	public LocalDate getFechaCompra() {
+		return this.fechaCompra;
 	}
 	
-	public LocalDate getFechaEvento() {
-		return this.evento.fecha;
+	public Evento getEvento() {
+		return this.evento;
 	}
 	
-	public double calcularRembolso() {
+	public double getPrecioSeguro() {
+		return this.precioSeguro;
+	}
+	
+	public double montoARecuperar() {
 		double monto = 0;
-		int dias = Period.between(LocalDate.now(), this.fechaCompra).getDays();
+		int dias = Period.between(fechaCompra, this.evento.fechaEvento).getDays();
 		if (dias >= 30) {
-			monto = this.evento.precioAsistencia() * 0.5;
+			monto = this.evento.precioAsistencia(fechaCompra) * 0.5;
 		} else {
 			monto = 0;
 		}
 		if (this.seguro) {
-			monto = monto + (this.evento.precioAsistencia() * 0.15);
+			monto += this.evento.precioAsistencia(fechaCompra) * 0.15;
 		}
 		return monto;
 	}
-	
-	public boolean entradaEnFecha(LocalDate fi, LocalDate ff) {
-		if (LocalDate.now().isAfter(fi) && LocalDate.now().isBefore(ff)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	
 	
 }
