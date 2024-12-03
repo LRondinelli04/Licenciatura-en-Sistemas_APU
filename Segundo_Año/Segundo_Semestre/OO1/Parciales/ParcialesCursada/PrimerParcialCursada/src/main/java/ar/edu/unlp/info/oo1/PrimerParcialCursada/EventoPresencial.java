@@ -13,6 +13,10 @@ public class EventoPresencial extends Evento {
 		this.sedes = new ArrayList<Sede>();
 	}
 
+	public void addSede(Sede s) {
+		this.sedes.add(s);
+	}
+
 	@Override
 	public double precioAsistencia(LocalDate fecha) {
 		double montoTotal = this.sumaPrecioAsistencia();
