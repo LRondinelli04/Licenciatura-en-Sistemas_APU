@@ -26,8 +26,8 @@ public abstract class Evento {
 		}
 	}
 	
-	public double sumaPrecioAsistencia() {
-		return this.precioI + this.precioR;
+	public double sumaPrecioAsistencia(double precioInscripcion) {
+		return precioInscripcion + this.precioR;
 	}
 	
 }
