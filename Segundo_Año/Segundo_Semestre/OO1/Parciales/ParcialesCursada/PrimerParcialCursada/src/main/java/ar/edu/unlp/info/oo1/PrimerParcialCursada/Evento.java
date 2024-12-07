@@ -18,11 +18,11 @@ public abstract class Evento {
 	
 	public abstract double precioAsistencia(LocalDate fecha);
 	
-	public boolean consultaFechaEvento(LocalDate fecha) {
+	public double consultaFechaEvento(LocalDate fecha) {
 		if (fecha.equals(this.fechaEvento)) {
-			return true;
+			return this.precioI * 0.2;
 		} else {
-			return false;
+			return this.precioI;
 		}
 	}
 	
