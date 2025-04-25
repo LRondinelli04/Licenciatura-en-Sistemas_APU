@@ -18,16 +18,16 @@ public abstract class Evento {
 	
 	public abstract double precioAsistencia(LocalDate fecha);
 	
-	public double consultaFechaEvento(LocalDate fecha, double monto) {
+	public double consultaFechaEvento(LocalDate fecha) {
 		if (fecha.equals(this.fechaEvento)) {
-			return monto += monto * 0.2;
+			return this.precioI * 0.2;
 		} else {
-			return monto;
+			return this.precioI;
 		}
 	}
 	
-	public double sumaPrecioAsistencia() {
-		return this.precioI + this.precioR;
+	public double sumaPrecioAsistencia(double precioInscripcion) {
+		return precioInscripcion + this.precioR;
 	}
 	
 }

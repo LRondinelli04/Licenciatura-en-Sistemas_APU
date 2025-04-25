@@ -13,8 +13,8 @@ public class EventoVirtual extends Evento {
 
 	@Override
 	public double precioAsistencia(LocalDate fecha) {
-		double montoTotal = this.sumaPrecioAsistencia() + this.monto;
-		montoTotal = this.consultaFechaEvento(fecha, montoTotal);
+		double precioInscripcion = this.consultaFechaEvento(fecha);			// Consulta la fecha del evento y le sumo el cargo en caso de ser true
+		double montoTotal = this.sumaPrecioAsistencia(precioInscripcion) + this.monto;  // Sumo el precioI generado con el precioR y el monto fijo del evento virtual
 		return montoTotal;
 	}
 
