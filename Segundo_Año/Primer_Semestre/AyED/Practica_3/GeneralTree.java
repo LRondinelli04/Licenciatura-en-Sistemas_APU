@@ -1,3 +1,4 @@
+// Removed package declaration
 import java.util.LinkedList;
 import java.util.List;
 

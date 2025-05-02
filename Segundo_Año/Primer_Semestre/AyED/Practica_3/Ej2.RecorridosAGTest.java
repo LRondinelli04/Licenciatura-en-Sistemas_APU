@@ -1,6 +1,5 @@
 import java.util.List;
-
-import Practica_3.GeneralTree;
+import GeneralTree; // Replace 'your.package.name' with the actual package name of the GeneralTree class
 
 public class RecorridosAGTest {
     public static void main(String[] args) {
@@ -15,8 +14,8 @@ public class RecorridosAGTest {
         arbol.addChild(nodo1);
         arbol.addChild(nodo2);
         nodo1.addChild(nodo3);
-        nodo1.addChild(nodo4);
-        nodo1.addChild(nodo5);
+        nodo3.addChild(nodo4);
+        nodo2.addChild(nodo5);
 
 
         RecorridosAG recorridos = new RecorridosAG();
@@ -34,5 +33,8 @@ public class RecorridosAGTest {
         System.out.println("POSTORDEN: " + resultado3); // Debería imprimir: [15, 21, 17]
 
         System.out.println("-----------------");
+
+        List<Integer> resultado4 = recorridos.numerosImparesMayoresQuePorNiveles(arbol, 0);
+        System.out.println("POR NIVEL: " + resultado4); // Debería imprimir: [15, 21, 17]
     }
 }
