@@ -1,4 +1,3 @@
 # Primer Parcial
 
- ![Primer Parcial](PrimerParcial.jpeg)
-    
+![Primer Parcial](PrimerParcial.jpeg)
