@@ -45,7 +45,7 @@ program Ej5;
 
 const
     cantDetalles = 5; // Cantidad de archivos detalle (1 por maquina)
-    valorAlto = 999999; // Valor alto para indicar fin de archivo
+    valorAlto = 9999; // Valor alto para indicar fin de archivo
 
 type
     detalle = record
@@ -115,12 +115,12 @@ var
     i, indiceMin: integer;
 begin
     min.cod_usuario := valorAlto;
-    min.fecha := '999999'
+    min.fecha := '999999';
     indiceMin := -1;
     for i := 1 to cantDetalles do 
     begin
         // Comparar por cod_usuario, si el cod_usuario es igual que el minimo, comparar por fecha
-        if (vecRegistro[i].cod_usuario < min.cod_usuario) or ((vecRegistro[i].cod_usuario = min.cod_usuario) and (vecRegistro[i].fecha < min.fecha)) then begin
+        if (vecRegistros[i].cod_usuario < min.cod_usuario) or ((vecRegistros[i].cod_usuario = min.cod_usuario) and (vecRegistros[i].fecha < min.fecha)) then begin
             min := vecRegistros[i]; // Actualizar el mínimo
             indiceMin := i; // Guardar el índice del archivo que tiene el mínimo
         end;
@@ -143,7 +143,7 @@ begin
     assign(maestro, '/var/log/maestro.dat'); // Asignar nombre de archivo maestro
     rewrite(maestro); // Crear el archivo maestro 
 
-    minimo(becDetalles, vecRegistros, min); // Leer el primer mínimo
+    minimo(vecDetalles, vecRegistros, min); // Leer el primer mínimo
     while (min.cod_usuario <> valorAlto) do begin // mientras que los archivos devuelvan un minimo
         usuarioActual := min.cod_usuario;
         while (usuarioActual = min.cod_usuario) do begin
@@ -183,13 +183,13 @@ begin
 end;
 
 var
-    maestro: archivoMaestro; // Archivo maestro
+    mae: archivoMaestro; // Archivo maestro
     vecDetalles: arrayDetalles; // Array de archivos detalle
     vecRegistros: arrayRegistros; // Array de registros actuales de cada archivo detalle
 
 BEGIN
 	inicializarDetalles(vecDetalles, vecRegistros); // Inicializar los archivos detalle y leer el primer registro
-    crearMaestro(maestro, vecDetalles, vecRegistros); // Crear el archivo maestro
-    imprimirMaestro(maestro); // Imprimir el archivo maestro para control
+    crearMaestro(mae, vecDetalles, vecRegistros); // Crear el archivo maestro
+    imprimirMaestro(mae); // Imprimir el archivo maestro para control
 END.
 

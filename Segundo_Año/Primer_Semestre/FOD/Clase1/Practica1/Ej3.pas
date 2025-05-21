@@ -23,10 +23,6 @@ type
 		dni: integer;
 	end;
 	empleados = file of registroEmp;
-var
-	arc_logico: empleados;
-	arc_fisico: string;
-	emp: string;
 
 procedure cargarArchivo(var arc_logico: empleados);
 	var
@@ -65,7 +61,11 @@ procedure listarEmpleados(var arc_logico: empleados; emp: string);
 		end;
 		close(arc_logico);
 	end;
-
+var
+	arc_logico: empleados;
+	arc_fisico: string;
+	emp: string;
+	
 BEGIN
 	writeln('Ingrese el nombre del archivo: ');
 	readln(arc_fisico);
