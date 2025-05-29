@@ -87,7 +87,7 @@ public class ParcialArboles5 {
         nodo19.addChild(nodo4);
 
         ParcialArboles5 arbol = new ParcialArboles5(raiz);
-        LinkedList<Integer> camino = arbol.camino(4);
+        LinkedList<Integer> camino = arbol.camino(2);
 
         if (camino != null) {
             for (int i = 0; i < camino.size(); i++) {

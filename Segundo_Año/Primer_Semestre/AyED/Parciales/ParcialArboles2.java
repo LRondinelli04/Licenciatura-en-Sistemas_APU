@@ -7,7 +7,7 @@
  * 3. Los hijos derechos del nuevo arbol son iguales que los del arbol dado.
  * 4. Las hojas del arbol seran hojas en el nuevo.
  */
-import Parciales.BinaryTree;
+import BinaryTree;
 
 public class ParcialArboles2 {
 
@@ -63,12 +63,12 @@ public class ParcialArboles2 {
         raiz.addLeftChild(hijoIzq);
         raiz.addRightChild(hijoDer);
 
-        System.out.println("Arbol original: " );
+        System.out.println("Arbol original: ");
         imprimirInorden(raiz);
 
         ParcialArboles2 arbol = new ParcialArboles2(raiz);
         BinaryTree<Integer> nuevoArbol = arbol.nuevoTree();
-        System.out.println("Nuevo arbol: " );
+        System.out.println("Nuevo arbol: ");
         imprimirInorden(nuevoArbol);
     }
 
