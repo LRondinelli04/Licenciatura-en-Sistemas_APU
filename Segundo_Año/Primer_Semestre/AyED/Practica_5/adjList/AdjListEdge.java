@@ -1,7 +1,7 @@
-package tp5.ejercicio1.adjList;
+package Practica_5.adjList;
 
-import tp5.ejercicio1.Edge;
-import tp5.ejercicio1.Vertex;
+import Practica_5.Edge;
+import Practica_5.Vertex;
 
 public class AdjListEdge<T> implements Edge<T> {
 	private Vertex<T> target;
