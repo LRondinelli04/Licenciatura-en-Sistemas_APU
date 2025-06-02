@@ -11,7 +11,7 @@
 
 ## 📚 Descripción
 
-Este repositorio contiene todos los archivos de prácticas, proyectos y parciales realizados durante la carrera **Licenciatura en Sistemas** y **Analista Programador Universitario (APU)** en la Facultad de Informática - UNLP. Aquí encontrarás ejercicios, resoluciones y material de estudio organizado por año y materia.
+Este repositorio contiene todos los archivos de prácticas, proyectos y parciales realizados durante la carrera **Licenciatura en Sistemas** y **Analista Programador Universitario (APU)** en la Facultad de Informática - UNLP.
 
 ---
 
@@ -27,7 +27,7 @@ Este repositorio contiene todos los archivos de prácticas, proyectos y parciale
 - **HTML - CSS**: Estructura y diseño de interfaces web.
 - **JavaScript**: Interactividad y lógica de aplicaciones web.
 - **Java**: Programación orientada a objetos para aplicaciones robustas.
-- **Pascal**: Resolución de problemas en materias iniciales (CADP, Taller de Programación).
+- **Pascal**: Resolución de problemas en materias iniciales (CADP, Taller de Programación y FOD).
 
 ---
 
