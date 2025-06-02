@@ -4,7 +4,6 @@
 
 [![GitHub repo size in bytes](https://img.shields.io/github/repo-size/LRondinelli04/Licenciatura-en-Sistemas_APU)](https://github.com/LRondinelli04/Licenciatura-en-Sistemas_APU)
 [![Last Commit](https://img.shields.io/github/last-commit/LRondinelli04/Licenciatura-en-Sistemas_APU)](https://github.com/LRondinelli04/Licenciatura-en-Sistemas_APU/commits/main)
-[![License](https://img.shields.io/github/license/LRondinelli04/Licenciatura-en-Sistemas_APU)](LICENSE)
 
 </div>
 
@@ -20,9 +19,6 @@ Este repositorio contiene todos los archivos de prácticas, proyectos y parciale
 
 - [Lenguajes y Tecnologías](#lenguajes-y-tecnologías)
 - [Estructura del Repositorio](#estructura-del-repositorio)
-- [Cómo usar este repositorio](#cómo-usar-este-repositorio)
-- [Contribuciones](#contribuciones)
-- [Contacto](#contacto)
 
 ---
 
@@ -41,7 +37,6 @@ Este repositorio contiene todos los archivos de prácticas, proyectos y parciale
 |-----------------|-----------------------------------------------------------------------------|
 | `Primer_Año/`   | Prácticas y proyectos del primer año de la carrera.                         |
 | `Segundo_Año/`  | Material, ejercicios y parciales del segundo año.                           |
-| `.vscode/`      | Configuración recomendada para Visual Studio Code.                          |
-| `README.md`     | Este archivo.                                                               |
+
 
 ---
