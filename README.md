@@ -15,13 +15,6 @@ Este repositorio contiene todos los archivos de prácticas, proyectos y parciale
 
 ---
 
-## 📑 Tabla de Contenidos
-
-- [Lenguajes y Tecnologías](#lenguajes-y-tecnologías)
-- [Estructura del Repositorio](#estructura-del-repositorio)
-
----
-
 ## 💻 Lenguajes y Tecnologías
 
 - **HTML - CSS**: Estructura y diseño de interfaces web.
