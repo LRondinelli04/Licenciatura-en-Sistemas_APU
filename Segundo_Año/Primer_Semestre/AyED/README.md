@@ -17,13 +17,6 @@ Este repositorio contiene material relacionado con la materia **Algoritmos y Est
 3. Analizar algoritmos y evaluar su eficiencia mediante formalismos matemáticos.
 4. Diseñar soluciones eficientes a problemas del mundo real utilizando estructuras de datos avanzadas.
 
-## Metodología de enseñanza
-
-La materia combina clases teóricas y prácticas:
-
-- **Clases teóricas:** Introducción a conceptos fundamentales, análisis de algoritmos y estructuras de datos.
-- **Clases prácticas:** Implementación de estructuras de datos y algoritmos en Java, resolución de problemas y trabajo en equipo.
-
 ## Temas destacados
 
 1. **Listas, pilas y colas:** Representación, acceso y recorridos.
@@ -31,4 +24,3 @@ La materia combina clases teóricas y prácticas:
 3. **Colas de prioridad y heaps:** Implementaciones y aplicaciones como Heapsort.
 4. **Grafos:** Representaciones, recorridos (DFS, BFS), ordenamiento topológico y algoritmos de caminos mínimos.
 5. **Análisis de algoritmos:** Uso de notaciones asintóticas y cálculo de tiempos de ejecución.
-

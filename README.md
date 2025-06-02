@@ -1,35 +1,47 @@
-<div align="center"> 
-  
+<div align="center">
+
 # Licenciatura en Sistemas y APU
 
-  
 [![GitHub repo size in bytes](https://img.shields.io/github/repo-size/LRondinelli04/Licenciatura-en-Sistemas_APU)](https://github.com/LRondinelli04/Licenciatura-en-Sistemas_APU)
+[![Last Commit](https://img.shields.io/github/last-commit/LRondinelli04/Licenciatura-en-Sistemas_APU)](https://github.com/LRondinelli04/Licenciatura-en-Sistemas_APU/commits/main)
+[![License](https://img.shields.io/github/license/LRondinelli04/Licenciatura-en-Sistemas_APU)](LICENSE)
 
-</div> 
+</div>
 
-## Descripción
+---
 
-Este repositorio contiene todos los archivos de prácticas y resolución de parciales elaborados en el marco de las materias relacionadas con la programación en la Facultad de Informática - UNLP. El objetivo es proporcionar una colección de ejercicios y proyectos que demuestren las habilidades y técnicas aprendidas durante el transcurso de la carrera.
+## 📚 Descripción
 
-## Lenguajes y Tecnologías
+Este repositorio contiene todos los archivos de prácticas, proyectos y parciales realizados durante la carrera **Licenciatura en Sistemas** y **Analista Programador Universitario (APU)** en la Facultad de Informática - UNLP. Aquí encontrarás ejercicios, resoluciones y material de estudio organizado por año y materia.
 
-- ### HTML - CSS
+---
 
-  Utilizados para la estructura y el diseño de las interfaces de usuario en los proyectos web.
+## 📑 Tabla de Contenidos
 
-- ### JavaScript
+- [Lenguajes y Tecnologías](#lenguajes-y-tecnologías)
+- [Estructura del Repositorio](#estructura-del-repositorio)
+- [Cómo usar este repositorio](#cómo-usar-este-repositorio)
+- [Contribuciones](#contribuciones)
+- [Contacto](#contacto)
 
-  Lenguaje de programación utilizado para añadir interactividad a las páginas web y desarrollar aplicaciones web dinámicas.
+---
 
-- ### Java
+## 💻 Lenguajes y Tecnologías
 
-  Lenguaje de programación orientado a objetos utilizado para desarrollar aplicaciones robustas y escalables.
+- **HTML - CSS**: Estructura y diseño de interfaces web.
+- **JavaScript**: Interactividad y lógica de aplicaciones web.
+- **Java**: Programación orientada a objetos para aplicaciones robustas.
+- **Pascal**: Resolución de problemas en materias iniciales (CADP, Taller de Programación).
 
-- ### Pascal
+---
 
-  Lenguaje de programación utilizado para la resolución de problemas y ejercicios en las materias CADP y Taller de Programación (Primer año).
+## 🗂️ Estructura del Repositorio
 
-## Estructura del Repositorio
+| Carpeta         | Descripción                                                                 |
+|-----------------|-----------------------------------------------------------------------------|
+| `Primer_Año/`   | Prácticas y proyectos del primer año de la carrera.                         |
+| `Segundo_Año/`  | Material, ejercicios y parciales del segundo año.                           |
+| `.vscode/`      | Configuración recomendada para Visual Studio Code.                          |
+| `README.md`     | Este archivo.                                                               |
 
-- **Primer_Año/**: Contiene los archivos de prácticas y proyectos realizados en el primer año de la carrera.
-- **Segundo_Año/**: Contiene todos los contenidos y actividades realizadas durante el segundo año de la carrera.
+---
