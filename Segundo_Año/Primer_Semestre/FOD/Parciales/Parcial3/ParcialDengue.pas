@@ -24,14 +24,14 @@ begin
    if (not eof(archivo)) then
       read(archivo, reg)
    else
-      reg.codigoMunicipio := valoralto; // valor alto para indicar el final del archivo
+      reg.codigoMunicipio := valorAlto; // valor alto para indicar el final del archivo
 end;
 
 procedure minimo(var regDetalle: dengueDetalleArrayReg; var minDetalle: dengueDetalle, var indiceMinimo: integer);
 var
    i: integer; 
 begin
-   minDetalle.codigoMunicipio := valroAlto;
+   minDetalle.codigoMunicipio := valorAlto;
    for i := 1 to archivoMensual do begin
       if (regDetalle[i].codigoMunicipio < minDetalle.codigoMunicipio) then begin
          minDetalle := regDetalle[i];
