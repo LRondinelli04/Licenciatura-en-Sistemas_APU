@@ -16,7 +16,7 @@ type
    end;
    archivoDetalle = file of dengueDetalle;
 
-   dengueDetalleArray = array[1..archivoMensual] of dengueDetalle; // array de 30 archivos que se recibe por mes
+   dengueDetalleArray = array[1..archivoMensual] of archivoDetalle; // array de 30 archivos que se recibe por mes
    dengueDetalleArrayReg = array[1..archivoMensual] of dengueDetalle; // array de los registros de los archivos
 
 procedure leer(var archivo: archivoDetalle; var reg: dengueDetalle);
