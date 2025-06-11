@@ -1,4 +1,4 @@
-package ar.edu.unlp.info.oo1.ParcialMantenimientoViviendas;
+package Segundo_Año.Segundo_Semestre.OO1.Parciales.ParcialesCursada.ParcialManteViviendas.src.main.java.ar.edu.unlp.info.oo1.ParcialMantenimientoViviendas;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;

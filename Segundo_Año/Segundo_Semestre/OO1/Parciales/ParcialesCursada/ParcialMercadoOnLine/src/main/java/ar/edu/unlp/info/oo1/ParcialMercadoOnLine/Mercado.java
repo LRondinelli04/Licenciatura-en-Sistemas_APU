@@ -1,4 +1,4 @@
-package ar.edu.unlp.info.oo1.ParcialMercadoOnLine;
+package Segundo_Año.Segundo_Semestre.OO1.Parciales.ParcialesCursada.ParcialMercadoOnLine.src.main.java.ar.edu.unlp.info.oo1.ParcialMercadoOnLine;
 
 import java.util.ArrayList;
 import java.util.List;

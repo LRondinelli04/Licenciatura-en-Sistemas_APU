@@ -1,4 +1,4 @@
-package ar.edu.unlp.info.oo1.ParcialAgenciaRecaudacion;
+package Segundo_Año.Segundo_Semestre.OO1.Parciales.ParcialesCursada.ParcialAgencia.src.main.java.ar.edu.unlp.info.oo1.ParcialAgenciaRecaudacion;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

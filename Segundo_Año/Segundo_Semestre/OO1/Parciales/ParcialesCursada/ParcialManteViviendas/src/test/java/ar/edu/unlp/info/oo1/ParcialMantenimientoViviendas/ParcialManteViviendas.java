@@ -1,3 +1,10 @@
+package Segundo_Año.Segundo_Semestre.OO1.Parciales.ParcialesCursada.ParcialManteViviendas.src.test.java.ar.edu.unlp.info.oo1.ParcialMantenimientoViviendas;
+
+import Segundo_Año.Segundo_Semestre.OO1.Parciales.ParcialesCursada.ParcialManteViviendas.src.main.java.ar.edu.unlp.info.oo1.ParcialMantenimientoViviendas.Cliente;
+import Segundo_Año.Segundo_Semestre.OO1.Parciales.ParcialesCursada.ParcialManteViviendas.src.main.java.ar.edu.unlp.info.oo1.ParcialMantenimientoViviendas.Plataforma;
+import Segundo_Año.Segundo_Semestre.OO1.Parciales.ParcialesCursada.ParcialManteViviendas.src.main.java.ar.edu.unlp.info.oo1.ParcialMantenimientoViviendas.Servicio;
+import java.time.LocalDate;
+
 /*
  * 
  * 
@@ -24,11 +31,13 @@
  * CODIGO JAVA NECESARIO PARA INICIALIZAR EL SISTEMA, REGISTRAR UN SERVICIO DE LIMPIEZA, UN CLIENTE Y CONTRATAR POR UNICA VEZ EL SERVICIO AL CLIENTE
 */
 
-Plataforma p = new Plataforma();
-Cliente c = p.registrarCliente("Lucas", "La Plata");
-Servicio limpieza = p.registrarServLimpieza(100, 10, 100);
+public class ParcialManteViviendas {
+    public static void main(String[] args) {
+        Plataforma p = new Plataforma();
+        Cliente c = p.registrarCliente("Lucas", "La Plata");
+        Servicio limpieza = p.registrarServLimpieza(100, 10, 100);
 
-// contratar el servicio para el cliente
-c.contratarUnica(limpieza, LocalDate.now());
-
-
+        // contratar el servicio para el cliente
+        c.contratarUnica(limpieza, LocalDate.now());
+    }
+}

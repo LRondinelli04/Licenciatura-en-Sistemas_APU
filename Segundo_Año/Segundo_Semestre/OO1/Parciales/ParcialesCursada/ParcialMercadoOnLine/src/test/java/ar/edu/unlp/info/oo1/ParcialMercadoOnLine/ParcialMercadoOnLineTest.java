@@ -1,3 +1,6 @@
+package Segundo_Año.Segundo_Semestre.OO1.Parciales.ParcialesCursada.ParcialMercadoOnLine.src.test.java.ar.edu.unlp.info.oo1.ParcialMercadoOnLine;
+
+import Segundo_Año.Segundo_Semestre.OO1.Parciales.ParcialesCursada.ParcialMercadoOnLine.src.main.java.ar.edu.unlp.info.oo1.ParcialMercadoOnline.Mercado
 /*
  * Mercado::precioFinalPublicacion()
  * 	- No hay publicaciones registradas en el mercado
@@ -15,15 +18,23 @@
  * 	- La antigüedad del usuario es menor o igual a 10 años (sin descuento)
  */
 
+import java.util.List;
+import org.junit.jupiter.api.Test;
 
-// 4)
-// Inicializar el sistema
-Mercado m = new Mercado();
-// registrar un usuario
-Usuario u = m.registrarUsuario("email", "La Plata");
-// registrar publicaciones al usuario (y al sistema)
-Publicacion pn = m.registrarProductoNuevo(u, "prodNuevo", "des", 100, 10, new EntregaExpress());
-Publicacion pu = m.registrarProductoUsado(u, "prodUsado", "des", 10);
-Publicacion se = m.registrarServicio(u, "servicio", "des", 1000);
-// retornar las 10 publicaciones mas caras para una localidad
-List<Publicacion> publicaciones = m.publicacionesMasCaras("La Plata");
+public class ParcialMercadoOnLineTest {
+
+	@Test
+	public void testPublicacionesMasCaras() {
+		// Inicializar el sistema
+		Mercado m = new Mercado();
+		// registrar un usuario
+		Usuario u = m.registrarUsuario("email", "La Plata");
+		// registrar publicaciones al usuario (y al sistema)
+		Publicacion pn = m.registrarProductoNuevo(u, "prodNuevo", "des", 100, 10, new EntregaExpress());
+		Publicacion pu = m.registrarProductoUsado(u, "prodUsado", "des", 10);
+		Publicacion se = m.registrarServicio(u, "servicio", "des", 1000);
+		// retornar las 10 publicaciones mas caras para una localidad
+		List<Publicacion> publicaciones = m.publicacionesMasCaras("La Plata");
+		// Aquí puedes agregar asserts para verificar el resultado
+	}
+}

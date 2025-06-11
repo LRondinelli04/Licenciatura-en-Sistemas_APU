@@ -1,4 +1,4 @@
-package ar.edu.unlp.info.oo1.ParcialDistribuidora;
+package Segundo_Año.Segundo_Semestre.OO1.Parciales.ParcialesCursada.ParcialDistribuidora.src.main.java.ar.edu.unlp.info.oo1.ParcialDistribuidora;
 
 public abstract class Producto {
 	
