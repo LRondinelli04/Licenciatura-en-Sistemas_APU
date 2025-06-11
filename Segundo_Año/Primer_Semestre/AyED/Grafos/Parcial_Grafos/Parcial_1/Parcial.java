@@ -64,7 +64,7 @@ public class Parcial {
         }
 
         // backtracking
-        visitados[actual] = false; 
+        visitados[actual] = false;
         return maxRecintos; // Retornamos el máximo de recintos visitados
 
     }
