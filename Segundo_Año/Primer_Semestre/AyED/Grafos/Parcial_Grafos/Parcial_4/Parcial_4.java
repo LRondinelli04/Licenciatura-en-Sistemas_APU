@@ -15,10 +15,11 @@ Implemente en la clase Parcial_4 el metodo:
 ListaGenerica<String> caminoDistanciaMaxima(Grafo ciudades, String origen, String destino, int distanciaMaxima)
 */
 
+/* Codigo que devuelve el primer camino para llegar a un destino desde un origen */
+
 public class Parcial_4 {
 
-    public List<String> caminoDistanciaMaxima(Graph<String> ciudades, String origen, String destino,
-            int distanciaMaxima) {
+    public List<String> caminoDistanciaMaxima(Graph<String> ciudades, String origen, String destino, int distanciaMaxima) {
         List<String> camino = new ArrayList<>();
 
         // analizar los casos base
@@ -54,19 +55,22 @@ public class Parcial_4 {
             return;
         }
 
-        // recorrer las ciudades adyacentes que no han sido visitadas y que el peso de la arista no sea mayor que la distancia maxima
+        // recorrer las ciudades adyacentes que no han sido visitadas y que el peso de
+        // la arista no sea mayor que la distancia maxima
         Vertex<String> verticeActual = ciudades.getVertex(indice);
         List<Edge<String>> adyacentes = ciudades.getEdges(verticeActual);
-        for(Edge<String> adyacente : adyacentes) {
+        for (Edge<String> adyacente : adyacentes) {
             int peso = adyacente.getWeight();
             int proxIndice = adyacente.getTarget().getPosition();
-            if(!visitados[proxIndice] && peso <= distanciaMaxima) {
-                dfs(camino, ciudades, proxIndice, destino, distanciaMaxima, visitados);;
+            if (!visitados[proxIndice] && peso <= distanciaMaxima) {
+                dfs(camino, ciudades, proxIndice, destino, distanciaMaxima, visitados);
+                ;
             }
         }
 
+        // Backtracking
         visitados[indice] = false;
-        camino.removeLast(); // o camino.remove(camino.size() - 1);
+        camino.remove(camino.size() - 1); // o camino.remove(camino.size() - 1);
     }
 
 }
