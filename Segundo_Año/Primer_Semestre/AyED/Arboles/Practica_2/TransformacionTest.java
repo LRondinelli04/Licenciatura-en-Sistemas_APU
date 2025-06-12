@@ -1,4 +1,6 @@
-import Practica_2.BinaryTree;
+package Practica_2;
+
+import Clases.BinaryTree;
 
 public class TransformacionTest {
 

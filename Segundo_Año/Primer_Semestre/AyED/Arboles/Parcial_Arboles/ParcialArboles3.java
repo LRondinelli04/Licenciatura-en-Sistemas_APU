@@ -1,4 +1,4 @@
-package Arboles.Parcial_Arboles;
+package Parcial_Arboles;
 
 /* 
  * Defina una clase ParcialArboles con una unica variable de instancia de tipo ArbolGeneral de enteros y un metodo publico con la siguiente firma: public ListaGenerica<Integer> nivel(int num).
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.LinkedList;
 
-import Arboles.Clases.GeneralTree;
+import Clases.GeneralTree;
 
 public class ParcialArboles3 {
 

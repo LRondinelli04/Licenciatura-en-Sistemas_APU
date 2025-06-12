@@ -1,4 +1,4 @@
-package tp1.ejercicio3;
+package Practica_1.ejercicio3;
 
 public class Profesor {
 

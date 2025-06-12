@@ -1,5 +1,5 @@
 import Practica_2.BinaryTree;
-import Practica_2.ejercicio8.ParcialArboles;
+// import Practica_2.ejercicio8.ParcialArboles; // Removed or correct this import if needed
 
 public class ParcialArbolesTest {
     public static void main(String[] args) {

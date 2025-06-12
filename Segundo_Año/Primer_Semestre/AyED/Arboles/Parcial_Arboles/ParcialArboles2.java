@@ -1,4 +1,4 @@
-package Arboles.Parcial_Arboles;
+package Parcial_Arboles;
 
 /* Defina una clase Parcial Arboles con: una unica variable de instancia de tipo BinaryTree<Integer> y un metodo public con la siguiente firma:
  * public BinaryTree<Integer> nuevoTree()
@@ -8,7 +8,7 @@ package Arboles.Parcial_Arboles;
  * 3. Los hijos derechos del nuevo arbol son iguales que los del arbol dado.
  * 4. Las hojas del arbol seran hojas en el nuevo.
  */
-import Arboles.Clases.BinaryTree;
+import Clases.BinaryTree;
 
 public class ParcialArboles2 {
 

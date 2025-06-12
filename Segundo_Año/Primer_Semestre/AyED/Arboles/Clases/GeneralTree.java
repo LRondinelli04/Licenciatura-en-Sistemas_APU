@@ -1,4 +1,4 @@
-package Arboles.Clases;
+package Clases;
 import java.util.LinkedList;
 import java.util.List;
 

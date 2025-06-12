@@ -1,9 +1,9 @@
-package Arboles.Parcial_Arboles;
+package Parcial_Arboles;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import Arboles.Clases.GeneralTree;
+import Clases.GeneralTree;
 
 public class ParcialArboles5 {
 

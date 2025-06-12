@@ -1,6 +1,6 @@
-package Arboles.Parcial_Arboles;
+package Parcial_Arboles;
 
-import Arboles.Clases.GeneralTree;
+import Clases.GeneralTree;
 import java.util.LinkedList;
 import java.util.Queue;
 

@@ -1,7 +1,6 @@
 import java.util.LinkedList;
 import java.util.Queue;
-import Practica_2.ejercicio5.ProfundidadDeArbolBinario;
-
+// import ejercicio5.ProfundidadDeArbolBinario; // Removed because class is in the same directory or package
 
 public class SumaProfundidadTest {
     public static void main(String[] args) {

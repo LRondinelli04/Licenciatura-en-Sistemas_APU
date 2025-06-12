@@ -1,6 +1,6 @@
-package Arboles.Parcial_Arboles;
+package Parcial_Arboles;
 
-import Arboles.Clases.BinaryTree;
+import Clases.BinaryTree;
 
 public class ParcialArboles4 {
 

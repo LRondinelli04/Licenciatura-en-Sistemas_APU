@@ -1,5 +1,5 @@
 import Practica_2.BinaryTree;
-import Practica_2.ejercicio6.Transformacion;
+// import Practica_2.ejercicio6.Transformacion; // Removed or correct this import if needed
 
 public class TransformacionTest {
     public static void main(String[] args) {

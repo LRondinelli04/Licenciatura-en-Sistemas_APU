@@ -1,4 +1,4 @@
-package Arboles.Clases;
+package Clases;
 // Removed package declaration to match the expected package
 
 import java.util.ArrayList;
