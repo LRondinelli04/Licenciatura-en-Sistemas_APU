@@ -12,71 +12,60 @@ import java.util.LinkedList;
 
 public class Parcial_3 {
 
-    public List<Invitado> nivelProfundidad(Graph<String> red, String usuario, int distancia, int umbral) {
-        List<Invitado> invitados = new ArrayList<>();
-
+    public Invitado nivelProfundidad(Graph<String> red, String usuario, int distancia, int umbral) {
+        Invitado invitado = new Invitado(0, false);
         // Analizar casos bases
         if (red == null || red.getSize() == 0 || distancia <= 0) {
-            return invitados;
+            return invitado;
         }
 
-        // buscar usuario
-        int indiceUsuario = -1;
-        for (int i = 0; i < red.getSize(); i++) {
-            if (red.getVertex(i).getData().equals(usuario)) {
-                indiceUsuario = i;
-                break;
-            }
-        }
-        if (indiceUsuario == -1) {
-            return invitados; // Usuario no encontrado, retorno vacio
+        Vertex<String> verticeUsuario = red.search(usuario);
+        if (verticeUsuario == null) {
+            return invitado; // Usuario no encontrado en la red
         }
 
         // recorrer BFS
-        boolean[] visitados = new boolean[red.getSize()];
-        bfs(invitados, red, indiceUsuario, distancia, umbral, visitados);
+        bfs(invitado, red, verticeUsuario, distancia, umbral);
 
-        return invitados;
+        return invitado;
     }
 
-    public void bfs(List<Invitado> invitados, Graph<String> red, int indiceUsuario, int distanciaMax, int umbral,
-            boolean[] visitados) {
+    public void bfs(Invitado invitado, Graph<String> red, Vertex<String> verticeUsuario, int distancia, int umbral) {
+        boolean[] visitados = new boolean[red.getSize()];
+        Queue<Vertex<String>> cola = new LinkedList<>();
+        Queue<Integer> niveles = new LinkedList<>();
 
-        Queue<NodoBFS> cola = new LinkedList<>(); //
-        cola.add(new NodoBFS(indiceUsuario, 0)); // el primer nodo (cargo distancia 0) [cola.enqueue(new
-                                                 // NodoBFS(indiceUsuario, 0))]
-        visitados[indiceUsuario] = true;
-        int cantInvitados = 0;
-        boolean popular = false; // Variable para determinar si el invitado es popular
+        visitados[verticeUsuario.getPosition()] = true;
+        cola.add(verticeUsuario);
+        niveles.add(0);
+        int cantUsuarios = 0;
 
         while (!cola.isEmpty()) {
-            NodoBFS actual = cola.poll(); // cola.dequeue()
-            int indiceActual = actual.getIndice();
-            int distanciaActual = actual.getDistancia();
+            Vertex<String> verticeActual = cola.poll();
+            int distanciaActual = niveles.poll();
 
-            if (distanciaActual > 0) {
-                cantInvitados++;
-                if (distanciaActual >= umbral) {
-                    popular = true;
-                }
-                invitados.add(new Invitado(cantInvitados, popular));
-                if (distanciaActual >= distanciaMax) {
-                    break; // Si la distancia actual supera el máximo, no se procesan más nodos
-                }
+            if (distanciaActual > distancia) {
+                continue;
             }
-
-            if (distanciaActual < distanciaMax) {
-                Vertex<String> verticeActual = red.getVertex(indiceActual);
+            if (distanciaActual == distancia) {
+                cantUsuarios++;
+            }
+            if (distanciaActual < distancia) {
                 List<Edge<String>> adyacentes = red.getEdges(verticeActual);
                 for (Edge<String> adyacente : adyacentes) {
                     int proxIndice = adyacente.getTarget().getPosition();
                     if (!visitados[proxIndice]) {
-                        visitados[proxIndice] = true; // Marcar como visitado
-                        cola.add(new NodoBFS(proxIndice, distanciaActual++));// cola.enqueue(new NodoBFS(proxIndice,
-                                                                             // distanciaActual + 1));
+                        visitados[proxIndice] = true;
+                        cola.add(adyacente.getTarget());
+                        niveles.add(distanciaActual + 1);
                     }
                 }
             }
         }
+
+        invitado.setNumInvitados(cantUsuarios);
+        invitado.setPopular(cantUsuarios >= umbral);
+
     }
+
 }

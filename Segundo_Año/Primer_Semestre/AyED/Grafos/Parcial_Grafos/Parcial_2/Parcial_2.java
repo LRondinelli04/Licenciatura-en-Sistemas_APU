@@ -27,58 +27,58 @@ public class Parcial_2 {
             return invitados;
         }
 
-        // Buscar el usuario si existe
-        int usuarioIndex = -1;
-        for (int i = 0; i < red.getSize(); i++) {
-            if (red.getVertex(i).getData().equals(usuario)) {
-                usuarioIndex = i;
-                break;
-            }
-        }
-        if (usuarioIndex == -1) {
-            return invitados; // Usuario no encontrado, retorno vacio
+        // buscar el usuario
+        Vertex<String> verticeUsuario = red.search(usuario);
+        if (verticeUsuario == null) {
+            return invitados;
         }
 
-        // recorrer BFS
-        boolean[] visitados = new boolean[red.getSize()];
-        bfs(invitados, red, usuarioIndex, distancia, limite, visitados);
+        bfs(red, verticeUsuario, distancia, limite, invitados);
 
         return invitados;
     }
 
-    public void bfs(List<Invitado> invitados, Graph<String> red, int usuarioIndex, int distanciaMax, int limite,
-            boolean[] visitados) {
+    public void bfs(Graph<String> red, Vertex<String> verticeUsuario, int distanciaMax, int limite,
+            List<Invitado> invitados) {
 
-        Queue<NodoBFS> cola = new LinkedList<>();
-        cola.add(new NodoBFS(usuarioIndex, 0));
-        visitados[usuarioIndex] = true;
+        boolean[] visitados = new boolean[red.getSize()];
+        Queue<Vertex<String>> cola = new LinkedList<>();
+        Queue<Integer> niveles = new LinkedList<>();
+
+        visitados[verticeUsuario.getPosition()] = true;
+        cola.add(verticeUsuario);
+        niveles.add(0);
 
         // mientras que la cola no este vacia y no haya alcanzado el limite de invitados
         while (!cola.isEmpty() && invitados.size() < limite) {
-            NodoBFS actual = cola.poll();
-            int indiceActual = actual.getIndice();
-            int distanciaActual = actual.getDistancia();
+            Vertex<String> actual = cola.poll();
+            int distanciaActual = niveles.poll();
 
-            if (distanciaActual > 0) {
-                invitados.add(new Invitado(red.getVertex(indiceActual).getData(), distanciaActual));
-                if (invitados.size() >= limite) {
-                    break; // Limite alcanzado
-                }
+            if (distanciaActual > distanciaMax) {
+                continue;
+            }
+
+            // si el nivel actual es menor o igual al limite de distancia, agrego el
+            // invitado
+            
+            // verifico de no cargar el usuario inicial
+            if (distanciaActual > 0 && distanciaActual <= distanciaMax) {
+                invitados.add(new Invitado(actual.getData(), distanciaActual));
             }
 
             if (distanciaActual < distanciaMax) {
-                // Obtener el vertice actual
-                Vertex<String> verticeActual = red.getVertex(indiceActual);
-                List<Edge<String>> adyacentes = red.getEdges(verticeActual);
+                List<Edge<String>> adyacentes = red.getEdges(actual);
                 for (Edge<String> adyacente : adyacentes) {
-                    int proxIndice = adyacente.getTarget().getPosition();
+                    Vertex<String> proxVertice = adyacente.getTarget();
+                    int proxIndice = proxVertice.getPosition();
                     if (!visitados[proxIndice]) {
-                        visitados[proxIndice] = true; // Marcar como visitado
-                        cola.add(new NodoBFS(proxIndice, distanciaActual + 1)); // Agregar a la cola con distancia
-                                                                                // incrementada
+                        visitados[proxIndice] = true;
+                        cola.add(proxVertice);
+                        niveles.add(distanciaActual + 1);
                     }
                 }
             }
+
         }
 
     }

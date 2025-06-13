@@ -1,11 +1,11 @@
-package Grafos.Parcial_Grafos.ParcialesRepetidos;
+package Grafos.Parcial_Grafos.ParcialesRepetidos.p1;
 
-public class Recinto {
+public class RecintoTemaiken {
 
     private String nombre;
     private int tiempo;
 
-    public Recinto(String nombre, int tiempo) {
+    public RecintoTemaiken(String nombre, int tiempo) {
         this.nombre = nombre;
         this.tiempo = tiempo;
     }

@@ -64,7 +64,6 @@ public class Parcial_4 {
             int proxIndice = adyacente.getTarget().getPosition();
             if (!visitados[proxIndice] && peso <= distanciaMaxima) {
                 dfs(camino, ciudades, proxIndice, destino, distanciaMaxima, visitados);
-                ;
             }
         }
 

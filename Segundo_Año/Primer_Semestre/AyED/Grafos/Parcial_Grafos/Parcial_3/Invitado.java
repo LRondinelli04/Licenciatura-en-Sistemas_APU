@@ -18,11 +18,11 @@ public class Invitado {
         this.numInvitados = numInvitados;
     }
 
-    public boolean ispopular() {
+    public boolean isPopular() {
         return popular;
     }
 
-    public void setpopular(boolean popular) {
+    public void setPopular(boolean popular) {
         this.popular = popular;
     }
 }

@@ -1,18 +1,17 @@
-package Grafos.Parcial_Grafos.ParcialesRepetidos;
+package Grafos.Parcial_Grafos.ParcialesRepetidos.p1;
 
 import Grafos.Clases.Graph;
 import Grafos.Clases.Vertex;
 import Grafos.Clases.Edge;
 import Grafos.Clases.adjList.*;
 import Grafos.Clases.adjMatrix.*;
-import Grafos.Parcial_Grafos.Parcial_1.Recinto;
 
 import java.util.List;
 import java.util.ArrayList;
 
 public class ParcialTemaiken {
 
-    public int resolver(Graph<Recinto> sitios, int tiempo) {
+    public int resolver(Graph<RecintoTemaiken> sitios, int tiempo) {
         // casos bases
         if (sitios == null || sitios.getSize() == 0 || tiempo <= 0) {
             return 0;
@@ -33,35 +32,35 @@ public class ParcialTemaiken {
         return dfs(sitios, indiceEntrada, tiempo, visitados);
     }
 
-    public int dfs(Graph<Recinto> sitios, int indiceActual, int tiempoRestante, boolean[] visitados) {
-        Recinto recintoActual = sitios.getVertex(indiceActual).getData();
-        if (tiempoRestante < recintoActual.getTiempo()) {
+    public int dfs(Graph<RecintoTemaiken> sitios, int indiceActual, int tiempoRestante, boolean[] visitados) {
+        RecintoTemaiken RecintoTemaikenActual = sitios.getVertex(indiceActual).getData();
+        if (tiempoRestante < RecintoTemaikenActual.getTiempo()) {
             return 0;
         }
         visitados[indiceActual] = true;
-        tiempoRestante -= recintoActual.getTiempo();
+        tiempoRestante -= RecintoTemaikenActual.getTiempo();
 
-        int maxRecintos = 1; // Contamos el recinto actual
+        int maxRecintoTemaikens = 1; // Contamos el RecintoTemaiken actual
 
         // recorrer adyacentes
-        Vertex<Recinto> verticeActual = sitios.getVertex(indiceActual);
-        List<Edge<Recinto>> adyacentes = sitios.getEdges(verticeActual);
-        for (Edge<Recinto> adyacente : adyacentes) {
+        Vertex<RecintoTemaiken> verticeActual = sitios.getVertex(indiceActual);
+        List<Edge<RecintoTemaiken>> adyacentes = sitios.getEdges(verticeActual);
+        for (Edge<RecintoTemaiken> adyacente : adyacentes) {
             int pesoArista = adyacente.getWeight();
             if (pesoArista <= tiempoRestante) {
                 int proxIndice = adyacente.getTarget().getPosition();
                 tiempoRestante -= pesoArista;
                 if (!visitados[proxIndice]) {
-                    int recintosVisitados = 1 + dfs(sitios, proxIndice, tiempoRestante, visitados);
-                    if (recintosVisitados > maxRecintos) {
-                        maxRecintos = recintosVisitados;
+                    int RecintoTemaikensVisitados = 1 + dfs(sitios, proxIndice, tiempoRestante, visitados);
+                    if (RecintoTemaikensVisitados > maxRecintoTemaikens) {
+                        maxRecintoTemaikens = RecintoTemaikensVisitados;
                     }
                 }
             }
         }
 
-        visitados[indiceActual] = false; // Desmarcar el recinto actual
-        return maxRecintos; // Retornar 0 porque no se cuenta el recinto actual
+        visitados[indiceActual] = false; // Desmarcar el RecintoTemaiken actual
+        return maxRecintoTemaikens; // Retornar 0 porque no se cuenta el RecintoTemaiken actual
 
     }
 }
