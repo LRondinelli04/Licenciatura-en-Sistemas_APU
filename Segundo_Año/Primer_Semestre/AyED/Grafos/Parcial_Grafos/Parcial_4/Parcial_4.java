@@ -9,17 +9,18 @@ import Grafos.Clases.adjMatrix.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/* Una agencia de turismo cuenta con un mapa de ciudades y las distancias entre ellas. Se quiere obtener un camino que comience en una ciudad origen y termine en una ciudad destino y que no pase por las rutas de mas de ciertos kilometros.
-Para el grafo de ejemplo, considerando que el origen es Rio Cuarto, el destino Cordoba y la distancia maxima es 80km, los caminos posibles son> (1) Rio Cuarto - Villa Maria - Cruz del eje y Cordoba, (2) Rio Cuarto - Villa Maria - Jesus Maria - Villa Dolores - Tulumba y Cordoba.
-Implemente en la clase Parcial_4 el metodo:
-ListaGenerica<String> caminoDistanciaMaxima(Grafo ciudades, String origen, String destino, int distanciaMaxima)
+/*  Una agencia de turismo cuenta con un mapa de ciudades y las distancias entre ellas. Se quiere obtener un camino que comience en una ciudad origen y termine en una ciudad destino y que no pase por las rutas de mas de ciertos kilometros.
+    Para el grafo de ejemplo, considerando que el origen es Rio Cuarto, el destino Cordoba y la distancia maxima es 80km, los caminos posibles son> (1) Rio Cuarto - Villa Maria - Cruz del eje y Cordoba, (2) Rio Cuarto - Villa Maria - Jesus Maria - Villa Dolores - Tulumba y Cordoba.
+    Implemente en la clase Parcial_4 el metodo:
+    ListaGenerica<String> caminoDistanciaMaxima(Grafo ciudades, String origen, String destino, int distanciaMaxima)
 */
 
 /* Codigo que devuelve el primer camino para llegar a un destino desde un origen */
 
 public class Parcial_4 {
 
-    public List<String> caminoDistanciaMaxima(Graph<String> ciudades, String origen, String destino, int distanciaMaxima) {
+    public List<String> caminoDistanciaMaxima(Graph<String> ciudades, String origen, String destino,
+            int distanciaMaxima) {
         List<String> camino = new ArrayList<>();
 
         // analizar los casos base
@@ -45,7 +46,8 @@ public class Parcial_4 {
         return camino;
     }
 
-    public void dfs(List<String> camino, Graph<String> ciudades, int indice, String destino, int distanciaMaxima, boolean[] visitados) {
+    public void dfs(List<String> camino, Graph<String> ciudades, int indice, String destino, int distanciaMaxima,
+            boolean[] visitados) {
         String ciudadActual = ciudades.getVertex(indice).getData();
         visitados[indice] = true; // marcar la ciudad actual como visitada
         camino.add(ciudadActual); // agregar la ciudad actual al camino
