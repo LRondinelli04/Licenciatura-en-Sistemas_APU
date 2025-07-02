@@ -26,7 +26,7 @@ public class Parcial_5 {
                 break;
             }
         }
-        if (indiceCiudad == -1) {
+        if (indiceCiudad == -1 || mapa.getVertex(indiceCiudad).getData().getDias() > cantDiasVacas) {
             return resultado;
         }
 
@@ -42,10 +42,6 @@ public class Parcial_5 {
 
         Ciudad ciudadActual = mapa.getVertex(indiceCiudad).getData();
 
-        if (cantDiasVacas < ciudadActual.getDias()) {
-            return; // No se puede visitar esta ciudad
-        }
-
         visitados[indiceCiudad] = true;
         caminoActual.add(ciudadActual.getNombre());
         cantDiasVacas -= ciudadActual.getDias();
@@ -59,7 +55,7 @@ public class Parcial_5 {
         List<Edge<Ciudad>> adyacentes = mapa.getEdges(verticeActual);
         for (Edge<Ciudad> adyacente : adyacentes) {
             int proxIndice = adyacente.getTarget().getPosition();
-            if (!visitados[proxIndice]) {
+            if (!visitados[proxIndice] && mapa.getVertex(proxIndice).getData().getDias() <= cantDiasVacas) {
                 recorrerDfs(resultado, mapa, proxIndice, cantDiasVacas, visitados, caminoActual);
             }
         }

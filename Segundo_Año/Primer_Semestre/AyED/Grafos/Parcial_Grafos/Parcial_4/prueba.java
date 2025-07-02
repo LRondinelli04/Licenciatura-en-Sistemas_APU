@@ -42,12 +42,12 @@ public class prueba {
         return camino;
     }
 
-    public void dfs(Graph<String> ciudades, Vertex<String> vActual, String destino, int distanciaMaxima,
+    public boolean dfs(Graph<String> ciudades, Vertex<String> vActual, String destino, int distanciaMaxima,
             boolean[] visitados, List<String> camino) {
         visitados[vActual.getPosition()] = true;
         camino.add(vActual.getData());
         if (vActual.getData().equals(destino)) {
-            return;
+            return true;
         }
 
         List<Edge<String>> adyacentes = ciudades.getEdges(vActual);
@@ -56,13 +56,16 @@ public class prueba {
             if (pesoArista <= distanciaMaxima) {
                 Vertex<String> proxV = ad.getTarget();
                 if (!visitados[proxV.getPosition()]) {
-                    dfs(ciudades, proxV, destino, distanciaMaxima, visitados, camino);
+                    if (dfs(ciudades, proxV, destino, distanciaMaxima, visitados, camino)) {
+                        return true;
+                    }
                 }
             }
         }
 
         visitados[vActual.getPosition()] = false;
         camino.remove(camino.size() - 1);
+        return false;
     }
 
 }

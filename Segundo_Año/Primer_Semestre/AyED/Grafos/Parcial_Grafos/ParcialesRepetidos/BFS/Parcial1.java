@@ -45,7 +45,7 @@ public class Parcial1 {
             int nivelActual = nivel.poll();
 
             if (nivelActual > distancia) {
-                return;
+                continue;
             }
             if (nivelActual <= distancia && nivelActual > 0) {
                 invitados.add(new Invitado(vertice.getData(), nivelActual));
