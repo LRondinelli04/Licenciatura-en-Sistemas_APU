@@ -29,27 +29,22 @@ public class Parcial_4 {
         }
 
         // buscar el vertice de origen
-        int indiceOrigen = -1;
-        for (int i = 0; i < ciudades.getSize(); i++) {
-            if (ciudades.getVertex(i).getData().equals(origen)) {
-                indiceOrigen = i;
-            }
-            // verificar que el destino existe
-        }
-        if (indiceOrigen == -1) {
+        Vertex<String> vOrigen = ciudades.search(origen);
+        Vertex<String> vDestino = ciudades.search(destino);
+        if (vOrigen == null || vDestino == null) {
             return camino;
         }
 
         // recorrer el grafo dfs
         boolean[] visitados = new boolean[ciudades.getSize()];
-        dfs(camino, ciudades, indiceOrigen, destino, distanciaMaxima, visitados);
+        dfs(camino, ciudades, vOrigen, destino, distanciaMaxima, visitados);
         return camino;
     }
 
-    public boolean dfs(List<String> camino, Graph<String> ciudades, int indice, String destino, int distanciaMaxima,
+    public boolean dfs(List<String> camino, Graph<String> ciudades, Vertex<String> actual, String destino, int distanciaMaxima,
             boolean[] visitados) {
-        String ciudadActual = ciudades.getVertex(indice).getData();
-        visitados[indice] = true; // marcar la ciudad actual como visitada
+        String ciudadActual = actual.getData();
+        visitados[actual.getPosition()] = true; // marcar la ciudad actual como visitada
         camino.add(ciudadActual); // agregar la ciudad actual al camino
 
         // si la ciudad actual es el destino, retornar
@@ -59,14 +54,13 @@ public class Parcial_4 {
 
         // recorrer las ciudades adyacentes que no han sido visitadas y que el peso de
         // la arista no sea mayor que la distancia maxima
-        Vertex<String> verticeActual = ciudades.getVertex(indice);
-        List<Edge<String>> adyacentes = ciudades.getEdges(verticeActual);
+        List<Edge<String>> adyacentes = ciudades.getEdges(actual);
         for (Edge<String> adyacente : adyacentes) {
             int peso = adyacente.getWeight();
             if (peso <= distanciaMaxima) {
-                int proxIndice = adyacente.getTarget().getPosition();
-                if (!visitados[proxIndice]) {
-                    if (dfs(camino, ciudades, proxIndice, destino, distanciaMaxima, visitados)) {
+                Vertex<String> prox = adyacente.getTarget();
+                if (!visitados[prox.getPosition()]) {
+                    if (dfs(camino, ciudades, prox, destino, distanciaMaxima, visitados)) {
                         return true;
                     }
                 }
@@ -74,7 +68,7 @@ public class Parcial_4 {
         }
 
         // Backtracking
-        visitados[indice] = false;
+        visitados[actual.getPosition()] = false;
         camino.remove(camino.size() - 1); // o camino.remove(camino.size() - 1);
         return false;
     }
