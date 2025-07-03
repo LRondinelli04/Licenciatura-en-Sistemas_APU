@@ -33,26 +33,27 @@ public class Parcial_1 {
     }
 
     public int dfs(Graph<Recinto> sitios, int tiempo, Vertex<Recinto> verActual, boolean[] visitados) {
-        visitados[verActual.getPosition()] = true;
         if (verActual.getData().getTiempo() > tiempo) {
             return 0;
         }
-        tiempo -= verActual.getData().getTiempo();
+
+        visitados[verActual.getPosition()] = true;
+        int tiempoRestante = tiempo - verActual.getData().getTiempo();
         int maxRecintos = 1;
 
         List<Edge<Recinto>> adyacentes = sitios.getEdges(verActual);
         for (Edge<Recinto> adyacente : adyacentes) {
-            int tiempoArista = adyacente.getWeight();
-            if (tiempoArista <= tiempo) {
+            tiempoRestante -= adyacente.getWeight();
+            if (tiempoRestante > 0) {
                 Vertex<Recinto> proxVertice = adyacente.getTarget();
                 if (!visitados[proxVertice.getPosition()]) {
-                    int recintos = 1 + dfs(sitios, tiempo - tiempoArista, proxVertice, visitados);
+                    int recintos = 1 + dfs(sitios, tiempoRestante, proxVertice, visitados);
                     if (recintos > maxRecintos) {
                         maxRecintos = recintos;
                     }
-
                 }
             }
+            tiempoRestante += adyacente.getWeight();
         }
 
         visitados[verActual.getPosition()] = false;
