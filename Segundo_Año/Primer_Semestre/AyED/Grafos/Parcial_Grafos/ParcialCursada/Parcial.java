@@ -24,25 +24,23 @@ public class Parcial {
 
         boolean[] visitados = new boolean[reino.getSize()];
         List<String> caminoActual = new ArrayList<>();
-        dfs(reino, verCastillo, aldea, maxPociones, visitados, caminoActual, camino, 0);
+        dfs(reino, verCastillo, aldea, maxPociones, visitados, caminoActual, camino);
 
         return camino;
     }
 
     public void dfs(Graph<String> reino, Vertex<String> actual, String aldea, int maxPociones, boolean[] visitados,
-            List<String> caminoActual, List<String> camino, int cantPociones) {
+            List<String> caminoActual, List<String> camino) {
 
         caminoActual.add(actual.getData());
         visitados[actual.getPosition()] = true;
 
-        // Actualizar el mejor camino si el actual es más largo (sin importar si llegamos a la aldea)
-        if (caminoActual.size() > camino.size()) {
-            camino.clear();
-            camino.addAll(caminoActual);
-        }
-
-        // Si llegamos a la aldea, no seguimos explorando desde aquí
         if (actual.getData().equals(aldea)) {
+            if (caminoActual.size() >= camino.size()) {
+                camino.clear();
+                camino.addAll(caminoActual);
+            }
+            // backtracking para seguir buscando caminos posibles que lleguen a la aldea
             visitados[actual.getPosition()] = false;
             caminoActual.remove(caminoActual.size() - 1);
             return;
@@ -50,14 +48,14 @@ public class Parcial {
 
         List<Edge<String>> adyacentes = reino.getEdges(actual);
         for (Edge<String> adyacente : adyacentes) {
-            cantPociones += adyacente.getWeight();
-            if (cantPociones <= maxPociones) {
+            maxPociones -= adyacente.getWeight();
+            if (maxPociones >= 0) {
                 Vertex<String> prox = adyacente.getTarget();
                 if (!visitados[prox.getPosition()]) {
-                    dfs(reino, prox, aldea, maxPociones, visitados, caminoActual, camino, cantPociones);
+                    dfs(reino, prox, aldea, maxPociones, visitados, caminoActual, camino);
                 }
             }
-            cantPociones -= adyacente.getWeight(); // Backtracking de pociones
+            maxPociones += adyacente.getWeight(); // Backtracking de pociones
         }
 
         visitados[actual.getPosition()] = false; // Desmarcar el vértice como visitado para otras rutas
