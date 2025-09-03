@@ -1,33 +1,94 @@
-# Orientación a Objetos 1
+# Orientación a Objetos 1 (OO1)
 
-Este repositorio contiene material relacionado con la materia **Orientación a Objetos 1 (OO1)**, correspondiente al segundo año de la carrera en la Facultad de Informática - UNLP. El objetivo principal es introducir formalmente el paradigma de orientación a objetos, sus características, ventajas y aplicaciones en el desarrollo de sistemas de software, así como desarrollar habilidades prácticas en lenguajes orientados a objetos.
+Este repositorio contiene material relacionado con la materia **Orientación a Objetos 1 (OO1)**, correspondiente al segundo año de las carreras de informática en la Facultad de Informática de la UNLP.
 
-## Contenidos principales
+## Información general
 
-- **Paradigma de Orientación a Objetos:** Clases, objetos, instancias, encapsulamiento, herencia, polimorfismo, modularidad, cohesión y acoplamiento.
-- **Diseño y análisis orientado a objetos:** Identificación de clases, asignación de responsabilidades, patrones de diseño y principios SOLID.
-- **Lenguajes y aplicaciones:** Programación en Java y otros lenguajes OO, diferencias entre tipado estático y dinámico, lenguajes basados en clases e instancias.
-- **Modelado con UML:** Diagramas de clases, secuencia y casos de uso. Correspondencia entre UML y lenguajes de programación.
-- **Metodologías de desarrollo:** Introducción al Proceso Unificado (RUP), ciclo de vida del software, fases de análisis, diseño, implementación y pruebas.
-- **Pruebas unitarias:** Uso de frameworks xUnit para asegurar la calidad y guiar el desarrollo.
+- **Carreras/Planes:** Licenciatura en Informática (2021/2015/2012), Licenciatura en Sistemas (2021/2015/2012), Analista Programador Universitario (2021/2015/2007), Analista en TICs (2021/2017)
+- **Año:** 2°
+- **Régimen de cursada:** Semestral
+- **Carácter:** Obligatoria
+- **Correlativas:** Taller de Programación
 
-## Objetivos de la materia
+## Fundamentación
 
-1. Presentar formalmente el paradigma de orientación a objetos y sus aplicaciones.
+La Programación Orientada a Objetos (POO) es fundamental en la formación del profesional informático. Aporta técnicas de análisis, diseño, programación y prueba que combinan los principios de abstracción, modularización, encapsulamiento, polimorfismo y herencia, favoreciendo la modificabilidad, mantenimiento y reuso de los componentes del software.
+
+## Objetivos generales
+
+1. Presentar formalmente el paradigma de orientación a objetos, sus características, ventajas y aplicaciones.
 2. Desarrollar prácticas concretas con lenguajes orientados a objetos.
 3. Establecer metodologías de análisis y diseño orientados a objetos.
-4. Aplicar técnicas de identificación y resolución de problemas reales mediante soluciones informáticas.
-5. Utilizar notaciones gráficas (UML) para la documentación y comunicación de diseños.
 
-## Temas destacados
+## Resultados de aprendizaje
 
-1. **Crisis del software y limitaciones de la programación procedural.**
-2. **Principios OO:** Clase, instancia, mensaje, método, atributos, relaciones, ocultamiento, binding dinámico.
-3. **Herencia y polimorfismo:** Redefinición, extensión de comportamiento, interfaces, heurísticas y buenas prácticas.
-4. **Delegación de responsabilidades:** Envío de mensajes, delegación a self/this, mantenimiento y reuso.
-5. **Convenciones y organización del código:** Nombres, estructura, legibilidad y mantenimiento.
-6. **Modelado UML:** Diagramas de clases, secuencia y casos de uso.
-7. **Proceso Unificado (RUP):** Fases, casos de uso, diseño e implementación.
-8. **Patrones y heurísticas:** Identificación de clases, asignación de responsabilidades, principios SOLID.
-9. **Particularidades de lenguajes OO:** Tipado, correspondencia paradigma-lenguaje.
-10. **Pruebas unitarias:** Automatización y aseguramiento de calidad.
+- Describir características y avances en hardware y software y sus aplicaciones prácticas.
+- Demostrar visión sobre tendencias y avances futuros en informática.
+- Aplicar e integrar conocimientos de otras disciplinas informáticas.
+- Sensibilización sobre la importancia de conocimientos amplios para crear aplicaciones informáticas.
+- Identificar necesidades de problemas reales, analizar su complejidad y evaluar soluciones informáticas.
+- Describir problemas y soluciones a varios niveles de abstracción.
+- Seleccionar y utilizar métodos analíticos, simulación y modelización.
+- Escoger patrones de solución, algoritmos y estructuras de datos apropiados.
+- Definir y diseñar hardware/software/redes según requisitos.
+- Describir fases de modelos de ciclo de vida en desarrollo y mantenimiento de sistemas.
+- Elegir modelos de proceso, entornos de programación y técnicas de gestión de datos.
+- Explicar diseño de sistemas e interfaces para interacción persona-ordenador y ordenador-ordenador.
+- Explicar técnicas de gestión de diseño, implementación, análisis, uso y mantenimiento de sistemas informáticos.
+
+## Competencias
+
+- CGS6: Interpretación de la evolución de la informática y tendencias tecnológicas.
+- CGT1: Identificación, formulación y resolución de problemas informáticos.
+- CGT2: Diseño y desarrollo de proyectos informáticos.
+- CGT5: Uso efectivo de técnicas y herramientas informáticas.
+- CGT8: Resolución de problemas multidisciplinarios desde la informática.
+- LI-CE4, LS-CE1: Planificación, dirección, relevamiento, especificación, diseño, implementación, prueba, verificación, validación, mantenimiento y control de calidad de sistemas de software, incluyendo análisis y diseño de interfaces humano-computador y computador-computador.
+
+## Contenidos mínimos
+
+- Objetos
+- Clases e instancias
+- Encapsulamiento
+- Jerarquías de clase
+- Herencia y polimorfismo
+- Lenguajes y aplicaciones
+
+## Programa analítico
+
+1. **La crisis del software:** Problemas de técnicas tradicionales, extensibilidad, reuso, mantenimiento, cohesión y acoplamiento
+2. **Principios OO:** Clase, instancia, mensaje, método, atributos, relaciones, ocultamiento, binding dinámico, inicialización, igualdad e identidad
+3. **El programa OO:** Modelo de dominio, servicio y aplicación interactiva
+4. **Herencia:** Redefinición, extensión, heurísticas, buenas prácticas, principio "es-un"
+5. **Polimorfismo:** Tipado de variables, clases e interfaces como tipos, heurísticas y buenas prácticas
+6. **Delegación de responsabilidades:** Envío de mensajes, delegación a self/this, mantenimiento y reuso
+7. **Convenciones de legibilidad y mantenimiento:** Nombres, organización, código
+8. **UML:** Diagramas de clases, secuencia, casos de uso, correspondencia con lenguajes de programación
+9. **Análisis y diseño con RUP:** Fase de elaboración, diseño e implementación a partir de casos de uso
+10. **Heurísticas y patrones:** Identificación de clases, asignación de responsabilidades, principios SOLID
+11. **Lenguajes OO:** Particularidades, variantes, tipado, correspondencia paradigma-lenguaje
+12. **Tests unitarios:** Aseguramiento de calidad, automatización con xUnit
+
+## Bibliografía recomendada por la materia
+
+- Weisfeld, Matt. "The Object-Oriented Thought Process". 5th edition. Pearson, 2019.
+- Martin, Robert C. "Clean Code: A Handbook of Agile Software Craftsmanship". Prentice Hall, 2009.
+- Martin, Robert C. "Agile Software Development, Principles, Patterns, and Practices". Pearson, 2014.
+- Larman, Craig. "UML y Patrones". Prentice Hall, 2003.
+- Fowler, Martin. "UML Distilled". Addison Wesley, 2003.
+- Jacobson, Booch, Rumbaugh. "The Unified Software Development Process". Addison Wesley, 1999.
+
+### Bibliografía complementaria
+
+- Fowler. "UML Gota a Gota". Addison Wesley Longman, 2000.
+- Wirfs-Brock, Rebecca et al. "Designing Object-Oriented Software". Pearson, 1990.
+- Budd, Timothy. "An Introduction to Object-Oriented Programming". Addison Wesley, 2001.
+
+## Metodología de enseñanza
+
+- Clases teóricas para presentar conceptos, motivación, definición y ejemplos concretos
+- Clases prácticas guiadas por trabajos prácticos, aplicación de conceptos y resolución de problemas
+- Uso de UML para especificación y diseño
+- Ejercicios de diseño, implementación y testeo en lenguajes OO
+- Actividades multidisciplinarias y trabajo colaborativo
+- Modalidad presencial y virtual según necesidad
